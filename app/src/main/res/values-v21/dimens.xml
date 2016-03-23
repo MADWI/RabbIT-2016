@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Margins for use in drawer -->
+    <!--
+    On older Android version this excludes statusbar,
+    while on newer it includes it (So we have to use bigger value here)
+    -->
+    <dimen name="nav_header_top_padding">32dp</dimen>
+</resources>

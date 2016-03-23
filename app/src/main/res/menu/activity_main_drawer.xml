@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+<group android:checkableBehavior="single">
+        <item
+            android:id="@+id/timetable"
+            android:icon="@drawable/ic_list_black_24dp"
+            android:title="@string/nav_timetable"/>
+        <item
+            android:id="@+id/stands"
+            android:icon="@drawable/ic_place_black_24dp"
+            android:title="@string/nav_stands"/>
+        <item
+            android:id="@+id/special_guest"
+            android:icon="@drawable/ic_person_black_24dp"
+            android:title="@string/nav_special_guest"/>
+
+        <item
+            android:id="@+id/about_us"
+            android:icon="@drawable/ic_android_black_24dp"
+            android:title="@string/nav_about_us"/>
+    </group>
+</menu>
