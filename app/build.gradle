@@ -10,6 +10,9 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+
+        // http://android-developers.blogspot.com/2016/02/android-support-library-232.html
+        generatedDensities = []
     }
     buildTypes {
         release {
