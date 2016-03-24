@@ -1,5 +1,6 @@
 package mad.zut.edu.pl.rabbit_2016.api;
 
+import mad.zut.edu.pl.rabbit_2016.model.company.Datum;
 import retrofit.Callback;
 import retrofit.http.GET;
 import retrofit.http.Path;
@@ -9,4 +10,6 @@ import retrofit.http.Path;
  */
 public interface RestInterface {
     @GET("/{json}")
+    void getAllCompanies(@Path("json") String json, Callback<Datum> cb);
+    void getAllEvents(@Path("json") String json, Callback<mad.zut.edu.pl.rabbit_2016.model.event.Datum> cb);
 }
