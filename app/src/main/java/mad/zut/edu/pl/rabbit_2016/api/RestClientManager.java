@@ -1,6 +1,7 @@
 package mad.zut.edu.pl.rabbit_2016.api;
 
-import mad.zut.edu.pl.rabbit_2016.model.company.Datum;
+import mad.zut.edu.pl.rabbit_2016.model.company.Company;
+import mad.zut.edu.pl.rabbit_2016.model.event.Event;
 import retrofit.Callback;
 
 /**
@@ -12,12 +13,12 @@ public class RestClientManager {
     public static RestInterface getRestApi(){
         return client.getService();
     }
-    public static void getAllCompanies(String json, Callback<Datum> callback){
+    public static void getAllCompanies(String json, Callback<Company> callback){
         RestInterface restInterface = getRestApi();
         restInterface.getAllCompanies(json, callback);
     }
 
-    public static void getAllEvents(String json, Callback<mad.zut.edu.pl.rabbit_2016.model.event.Datum> callback){
+    public static void getAllEvents(String json, Callback<Event> callback){
         RestInterface restInterface = getRestApi();
         restInterface.getAllEvents(json, callback);
     }

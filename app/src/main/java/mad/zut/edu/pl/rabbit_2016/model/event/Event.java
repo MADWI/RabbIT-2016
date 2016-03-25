@@ -1,8 +1,6 @@
 
 package mad.zut.edu.pl.rabbit_2016.model.event;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -10,32 +8,44 @@ import com.google.gson.annotations.SerializedName;
 @Generated("org.jsonschema2pojo")
 public class Event {
 
-    @SerializedName("success")
+    @SerializedName("companyId")
     @Expose
-    private Boolean success;
+    private String companyId;
     @SerializedName("data")
     @Expose
-    private List<Datum> data = new ArrayList<Datum>();
-    @SerializedName("errors")
+    private String data;
+    @SerializedName("id")
     @Expose
-    private List<Error> errors = new ArrayList<Error>();
+    private String id;
+    @SerializedName("speaker")
+    @Expose
+    private String speaker;
+    @SerializedName("speakerPictureUrl")
+    @Expose
+    private String speakerPictureUrl;
+    @SerializedName("time")
+    @Expose
+    private String time;
+    @SerializedName("title")
+    @Expose
+    private String title;
 
     /**
      * 
      * @return
-     *     The success
+     *     The companyId
      */
-    public Boolean getSuccess() {
-        return success;
+    public String getCompanyId() {
+        return companyId;
     }
 
     /**
      * 
-     * @param success
-     *     The success
+     * @param companyId
+     *     The companyId
      */
-    public void setSuccess(Boolean success) {
-        this.success = success;
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
     }
 
     /**
@@ -43,7 +53,7 @@ public class Event {
      * @return
      *     The data
      */
-    public List<Datum> getData() {
+    public String getData() {
         return data;
     }
 
@@ -52,26 +62,98 @@ public class Event {
      * @param data
      *     The data
      */
-    public void setData(List<Datum> data) {
+    public void setData(String data) {
         this.data = data;
     }
 
     /**
      * 
      * @return
-     *     The errors
+     *     The id
      */
-    public List<Error> getErrors() {
-        return errors;
+    public String getId() {
+        return id;
     }
 
     /**
      * 
-     * @param errors
-     *     The errors
+     * @param id
+     *     The id
      */
-    public void setErrors(List<Error> errors) {
-        this.errors = errors;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * 
+     * @return
+     *     The speaker
+     */
+    public String getSpeaker() {
+        return speaker;
+    }
+
+    /**
+     * 
+     * @param speaker
+     *     The speaker
+     */
+    public void setSpeaker(String speaker) {
+        this.speaker = speaker;
+    }
+
+    /**
+     * 
+     * @return
+     *     The speakerPictureUrl
+     */
+    public String getSpeakerPictureUrl() {
+        return speakerPictureUrl;
+    }
+
+    /**
+     * 
+     * @param speakerPictureUrl
+     *     The speakerPictureUrl
+     */
+    public void setSpeakerPictureUrl(String speakerPictureUrl) {
+        this.speakerPictureUrl = speakerPictureUrl;
+    }
+
+    /**
+     * 
+     * @return
+     *     The time
+     */
+    public String getTime() {
+        return time;
+    }
+
+    /**
+     * 
+     * @param time
+     *     The time
+     */
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    /**
+     * 
+     * @return
+     *     The title
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * 
+     * @param title
+     *     The title
+     */
+    public void setTitle(String title) {
+        this.title = title;
     }
 
 }

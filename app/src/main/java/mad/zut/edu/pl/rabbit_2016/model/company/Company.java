@@ -1,8 +1,6 @@
 
 package mad.zut.edu.pl.rabbit_2016.model.company;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -10,68 +8,131 @@ import com.google.gson.annotations.SerializedName;
 @Generated("org.jsonschema2pojo")
 public class Company {
 
-    @SerializedName("success")
+    @SerializedName("id")
     @Expose
-    private Boolean success;
-    @SerializedName("data")
+    private String id;
+    @SerializedName("name")
     @Expose
-    private List<Datum> data = new ArrayList<Datum>();
-    @SerializedName("errors")
+    private String name;
+    @SerializedName("description")
     @Expose
-    private List<Error> errors = new ArrayList<Error>();
+    private String description;
+    @SerializedName("room")
+    @Expose
+    private String room;
+    @SerializedName("websiteUrl")
+    @Expose
+    private String websiteUrl;
+    @SerializedName("logoUrl")
+    @Expose
+    private String logoUrl;
 
     /**
      * 
      * @return
-     *     The success
+     *     The id
      */
-    public Boolean getSuccess() {
-        return success;
+    public String getId() {
+        return id;
     }
 
     /**
      * 
-     * @param success
-     *     The success
+     * @param id
+     *     The id
      */
-    public void setSuccess(Boolean success) {
-        this.success = success;
-    }
-
-    /**
-     * 
-     * @return
-     *     The data
-     */
-    public List<Datum> getData() {
-        return data;
-    }
-
-    /**
-     * 
-     * @param data
-     *     The data
-     */
-    public void setData(List<Datum> data) {
-        this.data = data;
+    public void setId(String id) {
+        this.id = id;
     }
 
     /**
      * 
      * @return
-     *     The errors
+     *     The name
      */
-    public List<Error> getErrors() {
-        return errors;
+    public String getName() {
+        return name;
     }
 
     /**
      * 
-     * @param errors
-     *     The errors
+     * @param name
+     *     The name
      */
-    public void setErrors(List<Error> errors) {
-        this.errors = errors;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * 
+     * @return
+     *     The description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * 
+     * @param description
+     *     The description
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * 
+     * @return
+     *     The room
+     */
+    public String getRoom() {
+        return room;
+    }
+
+    /**
+     * 
+     * @param room
+     *     The room
+     */
+    public void setRoom(String room) {
+        this.room = room;
+    }
+
+    /**
+     * 
+     * @return
+     *     The websiteUrl
+     */
+    public String getWebsiteUrl() {
+        return websiteUrl;
+    }
+
+    /**
+     * 
+     * @param websiteUrl
+     *     The websiteUrl
+     */
+    public void setWebsiteUrl(String websiteUrl) {
+        this.websiteUrl = websiteUrl;
+    }
+
+    /**
+     * 
+     * @return
+     *     The logoUrl
+     */
+    public String getLogoUrl() {
+        return logoUrl;
+    }
+
+    /**
+     * 
+     * @param logoUrl
+     *     The logoUrl
+     */
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
     }
 
 }
