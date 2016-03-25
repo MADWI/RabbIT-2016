@@ -12,10 +12,19 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 
+import java.util.List;
+
+import mad.zut.edu.pl.rabbit_2016.Constants;
 import mad.zut.edu.pl.rabbit_2016.R;
+import mad.zut.edu.pl.rabbit_2016.api.RequestCallback;
+import mad.zut.edu.pl.rabbit_2016.api.RequestListener;
+import mad.zut.edu.pl.rabbit_2016.api.RestClientManager;
 import mad.zut.edu.pl.rabbit_2016.fragments.PlaceholderFragment;
+import mad.zut.edu.pl.rabbit_2016.model.company.Company;
+import retrofit.RetrofitError;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 

@@ -1,5 +1,7 @@
 package mad.zut.edu.pl.rabbit_2016.api;
 
+import java.util.List;
+
 import mad.zut.edu.pl.rabbit_2016.model.company.Company;
 import mad.zut.edu.pl.rabbit_2016.model.event.Event;
 import retrofit.Callback;
@@ -13,12 +15,13 @@ public class RestClientManager {
     public static RestInterface getRestApi(){
         return client.getService();
     }
-    public static void getAllCompanies(String json, Callback<Company> callback){
+
+    public static void getAllCompanies(String json, Callback<List<Company>> callback){
         RestInterface restInterface = getRestApi();
         restInterface.getAllCompanies(json, callback);
     }
 
-    public static void getAllEvents(String json, Callback<Event> callback){
+    public static void getAllEvents(String json, Callback<List<Event>> callback){
         RestInterface restInterface = getRestApi();
         restInterface.getAllEvents(json, callback);
     }
