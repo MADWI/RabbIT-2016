@@ -20,6 +20,7 @@ import mad.zut.edu.pl.rabbit_2016.model.company.Company;
 public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.CompaniesHolder> {
 
     private List<Company> company;
+    private static ClickListener clickListener;
 
     public CompaniesAdapter() {}
 
@@ -52,6 +53,10 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Comp
         return 0;
     }
 
+    public void setOnItemClickListener(ClickListener clickListener) {
+        this.clickListener = clickListener;
+    }
+
     public class CompaniesHolder extends RecyclerView.ViewHolder {
         public final TextView companyName;
         public final TextView companyRoom;
@@ -67,5 +72,9 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Comp
 
     public void setCompanies(List<Company> data) {
         company = data;
+    }
+
+    public interface ClickListener {
+        void onItemClick(int position, View v);
     }
 }

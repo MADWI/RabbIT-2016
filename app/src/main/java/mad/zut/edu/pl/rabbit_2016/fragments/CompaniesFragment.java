@@ -23,7 +23,7 @@ import retrofit.RetrofitError;
 /**
  * Created by Bartosz Kozajda on 26.03.2016.
  */
-public class CompaniesFragment extends Fragment{
+public class CompaniesFragment extends Fragment implements CompaniesAdapter.ClickListener{
 
     private RecyclerView recyclerView;
     private CompaniesAdapter companiesAdapter;
@@ -41,11 +41,17 @@ public class CompaniesFragment extends Fragment{
         return v;
     }
 
+    @Override
+    public void onItemClick(int position, View v) {
+
+    }
+
     private void initRecyclerView(){
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
         companiesAdapter = new CompaniesAdapter();
+        companiesAdapter.setOnItemClickListener(this);
         recyclerView.setAdapter(companiesAdapter);
     }
 
