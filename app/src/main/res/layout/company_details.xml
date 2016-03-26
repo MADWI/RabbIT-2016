@@ -111,7 +111,7 @@
             android:progressTint="@color/ratingColor"
             android:layout_alignLeft="@+id/company_room_view"
             android:layout_alignStart="@+id/company_room_view"
-            android:numStars="@dimen/rating_max_value"
+            android:numStars="@integer/rating_max_value"
             android:rating="3"
             android:stepSize="1" />
 
@@ -133,7 +133,7 @@
             android:progressTint="@color/ratingColor"
             android:layout_alignLeft="@+id/company_room_view"
             android:layout_alignStart="@+id/company_room_view"
-            android:numStars="@dimen/rating_max_value"
+            android:numStars="@integer/rating_max_value"
             android:rating="2"
             android:stepSize="1" />
 
@@ -155,7 +155,7 @@
             android:progressTint="@color/ratingColor"
             android:layout_alignLeft="@+id/company_room_view"
             android:layout_alignStart="@+id/company_room_view"
-            android:numStars="@dimen/rating_max_value"
+            android:numStars="@integer/rating_max_value"
             android:rating="4"
             android:stepSize="1" />
 

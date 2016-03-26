@@ -11,6 +11,7 @@
     <dimen name="nav_header_top_padding">16dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
 
-    <dimen name="rating_max_value">5</dimen>
+    <!-- TODO: move out of dimens.xml -->
+    <integer name="rating_max_value">5</integer>
     <dimen name="about_us_font_size">15sp</dimen>
 </resources>
