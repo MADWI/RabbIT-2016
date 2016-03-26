@@ -6,8 +6,9 @@
     card_view:cardElevation="5dp"
     card_view:cardUseCompatPadding="true"
     card_view:cardBackgroundColor="@color/white"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
+    android:layout_marginLeft="@dimen/default_margin"
+    android:layout_marginRight="@dimen/default_margin"
+    android:layout_marginTop="@dimen/default_margin"
     android:id="@+id/cv">
 
     <RelativeLayout
@@ -30,11 +31,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Sala:"
+            android:text="@string/room_string"
             android:id="@+id/text_room"
             android:layout_below="@+id/company_logo"
-            android:paddingRight="20dp"
-            android:layout_marginBottom="10dp"
+            android:paddingRight="@dimen/default_padding_right"
+            android:layout_marginBottom="@dimen/default_margin"
             android:layout_marginLeft="100dp"
             android:textColor="@color/textDefault"
 

@@ -6,8 +6,9 @@
     card_view:cardElevation="5dp"
     card_view:cardUseCompatPadding="true"
     card_view:cardBackgroundColor="@color/white"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
+    android:layout_marginLeft="@dimen/default_margin"
+    android:layout_marginRight="@dimen/default_margin"
+    android:layout_marginTop="@dimen/default_margin"
     android:id="@+id/cv">
 
     <RelativeLayout
@@ -50,11 +51,11 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Polskie Miasto Przyszłości "
             android:id="@+id/lecture_name"
-            android:paddingRight="5dp"
+            android:paddingRight="@dimen/default_padding_right"
             android:textColor="@color/textDefault"
-            android:layout_marginTop="12dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginStart="15dp"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:layout_marginStart="@dimen/default_margin"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/linearLayout"
             android:layout_alignParentRight="true"
@@ -70,7 +71,7 @@
             android:layout_below="@+id/lecture_name"
             android:layout_alignLeft="@+id/lecture_name"
             android:layout_alignStart="@+id/lecture_name"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="@dimen/default_margin" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -80,7 +81,7 @@
             android:textColor="@color/textDefault"
             android:textStyle="bold"
             android:id="@+id/lecture_place"
-            android:layout_marginTop="11dp"
+            android:layout_marginTop="@dimen/default_margin"
             android:layout_below="@+id/lecture_organizer"
             android:layout_alignLeft="@+id/lecture_organizer"
             android:layout_alignStart="@+id/lecture_organizer" />

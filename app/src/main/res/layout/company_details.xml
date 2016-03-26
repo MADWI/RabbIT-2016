@@ -28,14 +28,13 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="36dp"
-                android:layout_marginStart="36dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:paddingRight="15dp"
+                android:paddingRight="@dimen/default_padding_right"
                 android:textStyle="bold"
                 android:text="Bright One"
-                android:layout_marginBottom="0dp"
                 android:id="@+id/company_name_view"
                 android:textColor="@color/white" />
 
@@ -43,9 +42,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/company_name_view"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="@dimen/default_margin"
                 android:textColor="@color/bannerHint"
-                android:text="Strona internetowa: "
+                android:text="@string/website_string"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:layout_below="@+id/company_name_view"
                 android:id="@+id/text_website"/>
@@ -55,12 +54,12 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/company_name_view"
                 android:textColor="@color/white"
-                android:paddingRight="15dp"
+                android:paddingRight="@dimen/default_padding_right"
                 android:textStyle="italic"
                 android:id="@+id/company_website_view"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="www.brightone.pl"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:layout_below="@+id/text_website" />
 
         </RelativeLayout>
@@ -69,20 +68,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Sala:"
+            android:text="@string/room_string"
             android:id="@+id/text_room"
-            android:layout_marginLeft="36dp"
-            android:layout_marginStart="36dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:layout_below="@+id/name_banner"
             android:layout_alignLeft="@+id/name_banner"
             android:layout_alignStart="@+id/name_banner"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="@dimen/default_margin" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:paddingRight="15dp"
+            android:paddingRight="@dimen/default_padding_right"
             android:text="122 WI2"
             android:id="@+id/company_room_view"
             android:textStyle="bold"
@@ -97,12 +96,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Kryterium 1:"
+            android:text="@string/criterium_1_string"
             android:id="@+id/text_criterium1"
             android:layout_below="@+id/company_room_view"
             android:layout_alignLeft="@+id/company_room_view"
             android:layout_alignStart="@+id/company_room_view"
-            android:layout_marginTop="13dp" />
+            android:layout_marginTop="@dimen/default_margin" />
 
         <RatingBar
             android:layout_width="wrap_content"
@@ -112,7 +111,7 @@
             android:progressTint="@color/ratingColor"
             android:layout_alignLeft="@+id/company_room_view"
             android:layout_alignStart="@+id/company_room_view"
-            android:numStars="5"
+            android:numStars="@dimen/rating_max_value"
             android:rating="3"
             android:stepSize="1" />
 
@@ -120,7 +119,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Krytetium 2:"
+            android:text="@string/criterium_2_string"
             android:id="@+id/text_criterium2"
             android:layout_below="@+id/rating_bar_criterium1"
             android:layout_alignLeft="@+id/company_room_view"
@@ -134,7 +133,7 @@
             android:progressTint="@color/ratingColor"
             android:layout_alignLeft="@+id/company_room_view"
             android:layout_alignStart="@+id/company_room_view"
-            android:numStars="5"
+            android:numStars="@dimen/rating_max_value"
             android:rating="2"
             android:stepSize="1" />
 
@@ -142,7 +141,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Kryterium 3:"
+            android:text="@string/criterium_3_string"
             android:id="@+id/text_criterium3"
             android:layout_below="@+id/rating_bar_criterium2"
             android:layout_alignLeft="@+id/company_room_view"
@@ -156,7 +155,7 @@
             android:progressTint="@color/ratingColor"
             android:layout_alignLeft="@+id/company_room_view"
             android:layout_alignStart="@+id/company_room_view"
-            android:numStars="5"
+            android:numStars="@dimen/rating_max_value"
             android:rating="4"
             android:stepSize="1" />
 
@@ -164,9 +163,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="O firmie:"
+            android:text="@string/about_company_string"
             android:id="@+id/text_desc"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/default_margin"
             android:layout_below="@+id/rating_bar_criterium3"
             android:layout_alignLeft="@+id/company_room_view"
             android:layout_alignStart="@+id/company_room_view" />
@@ -175,14 +174,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:paddingRight="15dp"
+            android:paddingRight="@dimen/default_padding_right"
             android:text="brightONE jest firmą operującą w sektorze ICT oferującą kompleksowe rozwiązania IT dla naszych globalnych klientów. Powstała w 2013 roku w wyniku przejęcia części firmy Tieto przez fundusz inwestycyjny Aurelius. Centra kompetencyjne brightONE zlokalizowane są w dwóch polskich miastach: Szczecinie i Wrocławiu. W nich realizowane są wszystkie etapy produkcji oprogramowania dla klientów firmy. Najsilniejsze i kluczowe kompetencje firmy od wielu lat pomagają kreować i tworzyć rozwiązania dla branży samochodowej czy obszaru rozwiązań webowych. Wykorzystując doświadczenie naszych pracowników począwszy od tworzenia systemów wbudowanych, projektowania efektywnych rozwiązań dla portali internetowych, fuzji danych i komunikacji w czasie rzeczywistym, poprzez aplikowanie zwinnych metodyk produkcji, a kończąc na solidnej platformie definiującej jakość dostarczanych produktów, wspieramy naszych klientów w osiąganiu sukcesów. Efekty pracy inżynierów brightONE są widoczne w sieci, biurach oraz w wielu miejscach nowoczesnych samochodów."
             android:id="@+id/company_desc_view"
             android:layout_below="@+id/text_desc"
             android:textColor="@color/textDefault"
             android:layout_alignLeft="@+id/company_room_view"
             android:layout_alignStart="@+id/company_room_view"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="@dimen/activity_vertical_margin"/>
 
     </RelativeLayout>
 

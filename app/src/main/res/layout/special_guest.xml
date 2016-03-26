@@ -25,10 +25,10 @@
             android:textColor="@color/colorPrimaryDark"
             android:textStyle="bold"
             android:id="@+id/guest_name_view"
-            android:layout_marginLeft="36dp"
-            android:paddingRight="15dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/default_padding_right"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_below="@+id/guest_image_view"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -39,18 +39,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Gdzie:"
+            android:text="@string/place_string"
             android:id="@+id/text_room"
             android:layout_below="@+id/guest_name_view"
             android:layout_alignLeft="@+id/guest_name_view"
             android:layout_alignStart="@+id/guest_name_view"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="@dimen/default_margin" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:paddingRight="15dp"
+            android:paddingRight="@dimen/default_padding_right"
             android:text="Aula, Wydział Nanotechnologii"
             android:id="@+id/guest_room_view"
             android:textStyle="bold"
@@ -65,12 +65,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Kiedy:"
+            android:text="@string/time_string"
             android:id="@+id/textView6"
             android:layout_below="@+id/guest_room_view"
             android:layout_alignLeft="@+id/guest_room_view"
             android:layout_alignStart="@+id/guest_room_view"
-            android:layout_marginTop="13dp" />
+            android:layout_marginTop="@dimen/default_margin" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
             android:textColor="@color/textDefault"
             android:layout_below="@+id/textView6"
             android:textStyle="bold"
-            android:paddingRight="15dp"
+            android:paddingRight="@dimen/default_padding_right"
             android:layout_alignLeft="@+id/textView6"
             android:layout_alignStart="@+id/textView6"
             android:layout_alignRight="@+id/guest_room_view"
@@ -91,9 +91,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Kim jest:"
+            android:text="@string/about_guest_string"
             android:id="@+id/text_desc"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="@dimen/default_margin"
             android:layout_below="@+id/guest_time_view"
             android:layout_alignLeft="@+id/guest_time_view"
             android:layout_alignStart="@+id/guest_time_view" />
@@ -102,7 +102,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:paddingRight="15dp"
+            android:paddingRight="@dimen/default_padding_right"
             android:text="Pichai was announced as the next CEO of Google on August 10, 2015 after previously being appointed Product Chief by CEO Larry Page on October 24, 2014. He stepped into the new position upon the completion of the formation of Alphabet Inc., the new holding company for the Google company family.\n\nAn engineering genius known for his innovative ideas, Sundar Pichai is best known as the mastermind behind the launch of the Chrome browser in 2008. He played a pivotal role in convincing his seniors at Google to launch the browser which in time became the most popular browser on the internet and also led to the launch of the Chrome operating system. "
             android:id="@+id/guest_desc_view"
             android:layout_below="@+id/text_desc"
@@ -111,7 +111,7 @@
             android:layout_alignStart="@+id/text_desc"
             android:layout_alignRight="@+id/guest_time_view"
             android:layout_alignEnd="@+id/guest_time_view"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="@dimen/activity_vertical_margin"/>
 
     </RelativeLayout>
 
