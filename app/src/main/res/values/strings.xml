@@ -7,4 +7,25 @@
     <string name="nav_about_us">O nas</string>
 
     <string name="navigation_drawer_toggle">Menu</string>
+    <string name="website_string">Strona internetowa:</string>
+    <string name="room_string">Sala:</string>
+
+    <string name="criterium_1_string">Kryterium 1:</string>
+    <string name="criterium_2_string">Krytetium 2:</string>
+    <string name="criterium_3_string">Kryterium 3:</string>
+
+    <string name="about_company_string">O firmie:</string>
+    <string name="about_guest_string">Kim jest:</string>
+    <string name="time_string">Kiedy:</string>
+    <string name="place_string">Gdzie:</string>
+
+    <string name="about_us_string">O nas</string>
+    <string name="about_us_desc_string">Jesteśmy kołem naukowym działającym na Wydziale Informatyki Zachodniopomorskiego Uniwersetu Technologicznego w Szczecinie.\n\nNaszą pasją jest tworzenie aplikacji mobilnych.</string>
+    <string name="want_to_join_string">Chcesz dołączyć?</string>
+    <string name="want_to_join_desc_string">Przyjdź na jedno z naszych cotygodniowych spotkań!</string>
+    <string name="more_info_string">Więcej informacji znajdziesz na:</string>
+    <string name="mad_website_string">Stronie internetowej:</string>
+    <string name="mad_website_desc_string">www.mad.wi.zut.edu.pl</string>
+    <string name="mad_facebook_string">Facebooku:</string>
+    <string name="mad_facebook_website_string">https://www.facebook.com/MADWIZUT</string>
 </resources>

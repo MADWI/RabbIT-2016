@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#519ED4</color>
+    <color name="colorPrimaryDark">#2E81BA</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorPrimaryBright">#BBDEFB</color>
+    <color name="colorPrimaryBright">#D4E7F4</color>
+    <color name="colorLectureEnd">#EF5350</color>
+    <color name="ratingColor">#FBC02D</color>
     <color name="drawerHeaderBackground">#FFFFFF</color>
+    <color name="containerBackground">#EEEEEE</color>
+    <color name="bannerHint">#E0E0E0</color>
+    <color name="textDefault">#424242</color>
+    <color name="white">#FFF</color>
 </resources>
