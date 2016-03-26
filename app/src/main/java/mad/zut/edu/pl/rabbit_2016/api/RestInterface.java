@@ -12,7 +12,7 @@ import retrofit.http.Path;
  * Created by Bartosz Kozajda on 24.03.2016.
  */
 public interface RestInterface {
-    @GET("/{json}")
+    @GET("/{json}/")
     void getAllCompanies(@Path("json") String json, Callback<List<Company>> cb);
     void getAllEvents(@Path("json") String json, Callback<List<Event>> cb);
 }

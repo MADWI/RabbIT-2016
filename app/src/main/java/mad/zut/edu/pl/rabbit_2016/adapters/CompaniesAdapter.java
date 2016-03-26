@@ -53,11 +53,7 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Comp
         return 0;
     }
 
-    public void setOnItemClickListener(ClickListener clickListener) {
-        this.clickListener = clickListener;
-    }
-
-    public class CompaniesHolder extends RecyclerView.ViewHolder {
+    public class CompaniesHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public final TextView companyName;
         public final TextView companyRoom;
         public final ImageView companyLogo;
@@ -67,12 +63,23 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Comp
             companyName = (TextView) itemView.findViewById(R.id.company_name);
             companyRoom = (TextView) itemView.findViewById(R.id.company_room);
             companyLogo = (ImageView) itemView.findViewById(R.id.company_logo);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            clickListener.onItemClick(getAdapterPosition(), v);
         }
     }
 
     public void setCompanies(List<Company> data) {
         company = data;
     }
+
+    public void setOnItemClickListener(ClickListener clickListener) {
+        this.clickListener = clickListener;
+    }
+
 
     public interface ClickListener {
         void onItemClick(int position, View v);

@@ -1,10 +1,11 @@
 package mad.zut.edu.pl.rabbit_2016.fragments;
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import java.util.List;
 
 import mad.zut.edu.pl.rabbit_2016.Constants;
 import mad.zut.edu.pl.rabbit_2016.R;
+import mad.zut.edu.pl.rabbit_2016.activities.CompanyActivity;
+import mad.zut.edu.pl.rabbit_2016.activities.MainActivity;
 import mad.zut.edu.pl.rabbit_2016.adapters.CompaniesAdapter;
 import mad.zut.edu.pl.rabbit_2016.api.RequestCallback;
 import mad.zut.edu.pl.rabbit_2016.api.RequestListener;
@@ -43,7 +46,9 @@ public class CompaniesFragment extends Fragment implements CompaniesAdapter.Clic
 
     @Override
     public void onItemClick(int position, View v) {
-
+        CompanyActivity.setPosition(position);
+        Intent myIntent = new Intent(getActivity(), CompanyActivity.class);
+        startActivity(myIntent);
     }
 
     private void initRecyclerView(){
@@ -60,6 +65,7 @@ public class CompaniesFragment extends Fragment implements CompaniesAdapter.Clic
             @Override
             public void onSuccess(List<Company> response) {
                 companiesAdapter.setCompanies(response);
+                CompanyActivity.setCompanies(response);
                 companiesAdapter.notifyDataSetChanged();
             }
 
