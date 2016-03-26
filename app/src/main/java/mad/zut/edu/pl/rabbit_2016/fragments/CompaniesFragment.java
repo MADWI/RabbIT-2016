@@ -1,7 +1,6 @@
 package mad.zut.edu.pl.rabbit_2016.fragments;
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,10 +11,8 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import mad.zut.edu.pl.rabbit_2016.Constants;
 import mad.zut.edu.pl.rabbit_2016.R;
 import mad.zut.edu.pl.rabbit_2016.activities.CompanyActivity;
-import mad.zut.edu.pl.rabbit_2016.activities.MainActivity;
 import mad.zut.edu.pl.rabbit_2016.adapters.CompaniesAdapter;
 import mad.zut.edu.pl.rabbit_2016.api.RequestCallback;
 import mad.zut.edu.pl.rabbit_2016.api.RequestListener;
