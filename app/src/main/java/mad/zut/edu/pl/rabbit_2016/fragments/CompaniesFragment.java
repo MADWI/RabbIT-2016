@@ -61,12 +61,11 @@ public class CompaniesFragment extends Fragment implements CompaniesAdapter.Clic
     }
 
     private void downloadCompanies(){
-        RestClientManager.getAllCompanies(Constants.COMPANIES_API_KEY, new RequestCallback<>(new RequestListener<List<Company>>() {
+        RestClientManager.getAllCompanies(new RequestCallback<>(new RequestListener<List<Company>>() {
             @Override
             public void onSuccess(List<Company> response) {
                 companiesAdapter.setCompanies(response);
                 CompanyActivity.setCompanies(response);
-                companiesAdapter.notifyDataSetChanged();
             }
 
             @Override

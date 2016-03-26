@@ -46,7 +46,6 @@ public class CompanyActivity extends AppCompatActivity {
         companyDescView.setText(company.get(position).getDescription());
         Picasso.with(this)
                 .load(company.get(position).getLogoUrl())
-                .placeholder(R.drawable.no_image)
                 .error(R.drawable.no_image)
                 .fit()
                 .centerInside()

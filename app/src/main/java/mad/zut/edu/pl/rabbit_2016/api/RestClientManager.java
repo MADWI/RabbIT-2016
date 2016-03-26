@@ -16,13 +16,13 @@ public class RestClientManager {
         return client.getService();
     }
 
-    public static void getAllCompanies(String json, Callback<List<Company>> callback){
+    public static void getAllCompanies(Callback<List<Company>> callback){
         RestInterface restInterface = getRestApi();
-        restInterface.getAllCompanies(json, callback);
+        restInterface.getAllCompanies(callback);
     }
 
-    public static void getAllEvents(String json, Callback<List<Event>> callback){
+    public static void getAllEvents(Callback<List<Event>> callback){
         RestInterface restInterface = getRestApi();
-        restInterface.getAllEvents(json, callback);
+        restInterface.getAllEvents(callback);
     }
 }

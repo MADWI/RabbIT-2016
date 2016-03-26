@@ -20,7 +20,7 @@ import mad.zut.edu.pl.rabbit_2016.model.company.Company;
 public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.CompaniesHolder> {
 
     private List<Company> company;
-    private static ClickListener clickListener;
+    private ClickListener clickListener;
 
     public CompaniesAdapter() {}
 
@@ -36,7 +36,6 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Comp
         holder.companyRoom.setText("Sala: " + company.get(position).getRoom());
         Picasso.with(holder.itemView.getContext())
                 .load(company.get(position).getLogoUrl())
-                .placeholder(R.drawable.no_image)
                 .error(R.drawable.no_image)
                 .fit()
                 .centerInside()
@@ -74,6 +73,7 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Comp
 
     public void setCompanies(List<Company> data) {
         company = data;
+        notifyDataSetChanged();
     }
 
     public void setOnItemClickListener(ClickListener clickListener) {
