@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 
 @Generated("org.jsonschema2pojo")
 public class Event {
-    
+
     @SerializedName("companyId")
     @Expose
     private String companyId;
