@@ -9,7 +9,6 @@ public class Constants {
     public static final String COMPANIES_API_KEY = "company.json";
     public static final String EVENTS_API_KEY = "event.json";
 
-    //Correct values
     /*public static final String BASE_URL = "http://md34531.zut.edu.pl/";
     public static final String COMPANIES_API_KEY = "company/";
     public static final String EVENTS_API_KEY = "event/";*/
