@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hannesdorfmann.swipeback.Position;
+import com.hannesdorfmann.swipeback.SwipeBack;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -37,6 +39,9 @@ public class CompanyActivity extends AppCompatActivity {
         companyRoomView = (TextView) findViewById(R.id.company_room_view);
         companyDescView = (TextView) findViewById(R.id.company_desc_view);
 
+        SwipeBack.attach(this, Position.LEFT)
+                .setSwipeBackView(R.layout.swipeback_default);
+
         setData(position);
     }
 
@@ -65,5 +70,6 @@ public class CompanyActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.trans_right_in, R.anim.trans_right_out);
+        overridePendingTransition(R.anim.swipeback_stack_to_front, R.anim.swipeback_stack_right_out);
     }
 }
