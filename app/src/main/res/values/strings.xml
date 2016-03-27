@@ -29,4 +29,7 @@
     <string name="mad_website_desc_string">www.mad.wi.zut.edu.pl</string>
     <string name="mad_facebook_string">Facebooku:</string>
     <string name="mad_facebook_website_string">https://www.facebook.com/MADWIZUT</string>
+
+    <string name="no_internet">Brak połączenia z internetem</string>
+    <string name="settings">Ustawienia</string>
 </resources>

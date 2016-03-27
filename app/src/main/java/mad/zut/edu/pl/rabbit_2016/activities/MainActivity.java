@@ -1,35 +1,31 @@
 package mad.zut.edu.pl.rabbit_2016.activities;
 
 import android.app.Fragment;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
-import java.util.List;
-
-import mad.zut.edu.pl.rabbit_2016.Constants;
 import mad.zut.edu.pl.rabbit_2016.R;
-import mad.zut.edu.pl.rabbit_2016.adapters.CompaniesAdapter;
-import mad.zut.edu.pl.rabbit_2016.api.RequestCallback;
-import mad.zut.edu.pl.rabbit_2016.api.RequestListener;
-import mad.zut.edu.pl.rabbit_2016.api.RestClientManager;
 import mad.zut.edu.pl.rabbit_2016.fragments.AuthorsFragment;
 import mad.zut.edu.pl.rabbit_2016.fragments.CompaniesFragment;
 import mad.zut.edu.pl.rabbit_2016.fragments.EventsFragment;
 import mad.zut.edu.pl.rabbit_2016.fragments.GuestFragment;
 import mad.zut.edu.pl.rabbit_2016.fragments.PlaceholderFragment;
-import mad.zut.edu.pl.rabbit_2016.model.company.Company;
-import retrofit.RetrofitError;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -37,6 +33,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static final String TAB_STANDS = "sta";
     public static final String TAB_SPECIAL_GUEST = "sgu";
     public static final String TAB_ABOUT_US = "abo";
+    private BroadcastReceiver ConnectivityReceiver;
+    private DrawerLayout drawer;
+    private IntentFilter filter;
 
     /**
      * Fragments selectable from drawer
@@ -95,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_toggle, R.string.navigation_drawer_toggle);
         drawer.addDrawerListener(toggle);
@@ -126,10 +125,44 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 item = DRAWER_FRAGMENTS[0];
             }
 
+            ConnectivityChangeReceiver();
+
+            filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+            this.registerReceiver(ConnectivityReceiver, filter);
+
             // Actually open the fragment
             openFragment(item);
             mNavigationView.setCheckedItem(item.id);
         }
+    }
+
+    private void  ConnectivityChangeReceiver(){
+         ConnectivityReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                ConnectivityManager cm =
+                        (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+                Snackbar snackbar = Snackbar
+                        .make(drawer, getResources().getString(R.string.no_internet), Snackbar.LENGTH_INDEFINITE)
+                        .setAction(getResources().getString(R.string.settings), new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
+                            }
+                        });
+
+                NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+                boolean isConnected = activeNetwork != null &&
+                        activeNetwork.isConnectedOrConnecting();
+
+                if(!isConnected){
+                    snackbar.show();
+                }else {
+                    snackbar.dismiss();
+                }
+            }
+        };
     }
 
     @Override
@@ -175,6 +208,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             super.onBackPressed();
         }
+
+        this.unregisterReceiver(ConnectivityReceiver);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        this.registerReceiver(ConnectivityReceiver, filter);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
