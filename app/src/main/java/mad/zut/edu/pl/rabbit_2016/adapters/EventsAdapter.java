@@ -4,9 +4,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.pkmmte.view.CircularImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -61,7 +61,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsHold
         public final TextView lectureHourView;
         public final TextView lectureRoomView;
         public final TextView lectureCompanyNameView;
-        public final CircularImageView circularImageView;
+        public final ImageView circularImageView;
 
         public EventsHolder(View itemView) {
             super(itemView);
@@ -71,7 +71,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsHold
             lectureHourView = (TextView) itemView.findViewById(R.id.lecture_hour_view);
             lectureRoomView = (TextView) itemView.findViewById(R.id.lecture_room_view);
             lectureCompanyNameView = (TextView) itemView.findViewById(R.id.lecture_company_name_view);
-            circularImageView = (CircularImageView) itemView.findViewById(R.id.speaker_icon_view);
+            circularImageView = (ImageView) itemView.findViewById(R.id.speaker_icon_view);
         }
     }
 
