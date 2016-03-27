@@ -12,10 +12,24 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 
+import java.util.List;
+
+import mad.zut.edu.pl.rabbit_2016.Constants;
 import mad.zut.edu.pl.rabbit_2016.R;
+import mad.zut.edu.pl.rabbit_2016.adapters.CompaniesAdapter;
+import mad.zut.edu.pl.rabbit_2016.api.RequestCallback;
+import mad.zut.edu.pl.rabbit_2016.api.RequestListener;
+import mad.zut.edu.pl.rabbit_2016.api.RestClientManager;
+import mad.zut.edu.pl.rabbit_2016.fragments.AuthorsFragment;
+import mad.zut.edu.pl.rabbit_2016.fragments.CompaniesFragment;
+import mad.zut.edu.pl.rabbit_2016.fragments.EventsFragment;
+import mad.zut.edu.pl.rabbit_2016.fragments.GuestFragment;
 import mad.zut.edu.pl.rabbit_2016.fragments.PlaceholderFragment;
+import mad.zut.edu.pl.rabbit_2016.model.company.Company;
+import retrofit.RetrofitError;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -39,10 +53,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      *       and should specify android:checkable="false" in xml
      */
     private static final DrawerFragmentItem[] DRAWER_FRAGMENTS = new DrawerFragmentItem[]{
-            new DrawerFragmentItem(R.id.timetable, TAB_PRESENTATIONS, PlaceholderFragment.class, PlaceholderFragment.makeArguments("Prezentacje")),
-            new DrawerFragmentItem(R.id.stands, TAB_STANDS, PlaceholderFragment.class, PlaceholderFragment.makeArguments("Stoiska")),
-            new DrawerFragmentItem(R.id.special_guest, TAB_SPECIAL_GUEST, PlaceholderFragment.class, PlaceholderFragment.makeArguments("Gość specjalny")),
-            new DrawerFragmentItem(R.id.about_us, TAB_ABOUT_US, PlaceholderFragment.class, PlaceholderFragment.makeArguments("O nas"))
+            new DrawerFragmentItem(R.id.timetable, TAB_PRESENTATIONS, EventsFragment.class, PlaceholderFragment.makeArguments("Prezentacje")),
+            new DrawerFragmentItem(R.id.stands, TAB_STANDS, CompaniesFragment.class, PlaceholderFragment.makeArguments("Stoiska")),
+            new DrawerFragmentItem(R.id.special_guest, TAB_SPECIAL_GUEST, GuestFragment.class, PlaceholderFragment.makeArguments("Gość specjalny")),
+            new DrawerFragmentItem(R.id.about_us, TAB_ABOUT_US, AuthorsFragment.class, PlaceholderFragment.makeArguments("O nas"))
     };
 
     /**
