@@ -29,6 +29,7 @@ public class CompanyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.company_details);
+        overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out);
 
         companyImageView = (ImageView) findViewById(R.id.company_image_view);
         companyNameView = (TextView) findViewById(R.id.company_name_view);
@@ -58,5 +59,11 @@ public class CompanyActivity extends AppCompatActivity {
 
     public static void setPosition(int data){
         position = data;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.trans_right_in, R.anim.trans_right_out);
     }
 }
