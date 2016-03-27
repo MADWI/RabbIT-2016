@@ -3,7 +3,7 @@
     <dimen name="activity_horizontal_margin">25dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen name="default_padding_right">15dp</dimen>
+    <dimen name="default_padding">15dp</dimen>
     <dimen name="default_margin">12dp</dimen>
 
     <!-- Margins for use in drawer -->
@@ -14,4 +14,5 @@
     <!-- TODO: move out of dimens.xml -->
     <integer name="rating_max_value">5</integer>
     <dimen name="about_us_font_size">15sp</dimen>
+    <dimen name="speaker_name_size">12sp</dimen>
 </resources>
