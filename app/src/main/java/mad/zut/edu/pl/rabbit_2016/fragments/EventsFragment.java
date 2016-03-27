@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ import retrofit.RetrofitError;
 public class EventsFragment extends Fragment {
     private RecyclerView recyclerView;
     private EventsAdapter eventsAdapter;
+    private ProgressBar progressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,7 +33,9 @@ public class EventsFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.events_list, container, false);
         recyclerView = (RecyclerView) v.findViewById(android.R.id.list);
+        progressBar = (ProgressBar) v.findViewById(R.id.loadingPanel);
 
+        progressBar.setVisibility(View.VISIBLE);
         initRecyclerView();
         downloadCompanies();
 
@@ -50,7 +54,8 @@ public class EventsFragment extends Fragment {
         RestClientManager.getAllEvents(new RequestCallback<>(new RequestListener<List<Event>>() {
             @Override
             public void onSuccess(List<Event> response) {
-               eventsAdapter.setCompanies(response);
+                eventsAdapter.setCompanies(response);
+                progressBar.setVisibility(View.GONE);
             }
 
             @Override

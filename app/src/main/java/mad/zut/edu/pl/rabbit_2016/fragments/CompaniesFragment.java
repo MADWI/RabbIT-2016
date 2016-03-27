@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class CompaniesFragment extends Fragment implements CompaniesAdapter.Clic
 
     private RecyclerView recyclerView;
     private CompaniesAdapter companiesAdapter;
+    private ProgressBar progressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,7 +36,9 @@ public class CompaniesFragment extends Fragment implements CompaniesAdapter.Clic
 
         View v = inflater.inflate(R.layout.companies_list, container, false);
         recyclerView = (RecyclerView) v.findViewById(android.R.id.list);
+        progressBar = (ProgressBar) v.findViewById(R.id.loadingPanel);
 
+        progressBar.setVisibility(View.VISIBLE);
         initRecyclerView();
         downloadCompanies();
 
@@ -63,6 +67,7 @@ public class CompaniesFragment extends Fragment implements CompaniesAdapter.Clic
             public void onSuccess(List<Company> response) {
                 companiesAdapter.setCompanies(response);
                 CompanyActivity.setCompanies(response);
+                progressBar.setVisibility(View.GONE);
             }
 
             @Override
