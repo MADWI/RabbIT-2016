@@ -10,6 +10,7 @@
     <string name="website_string">Strona internetowa:</string>
     <string name="room_string">Sala:</string>
 
+    <string name="rate_company_string">Oceń firmę:</string>
     <string name="criterium_1_string">Kryterium 1:</string>
     <string name="criterium_2_string">Krytetium 2:</string>
     <string name="criterium_3_string">Kryterium 3:</string>
@@ -28,4 +29,7 @@
     <string name="mad_website_desc_string">www.mad.wi.zut.edu.pl</string>
     <string name="mad_facebook_string">Facebooku:</string>
     <string name="mad_facebook_website_string">https://www.facebook.com/MADWIZUT</string>
+
+    <string name="no_internet">Brak połączenia z internetem</string>
+    <string name="settings">Ustawienia</string>
 </resources>
