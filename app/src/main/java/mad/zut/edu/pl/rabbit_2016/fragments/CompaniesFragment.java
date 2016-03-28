@@ -5,16 +5,14 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 
+import java.io.Serializable;
 import java.util.List;
 
 import mad.zut.edu.pl.rabbit_2016.R;
@@ -30,13 +28,14 @@ import retrofit.RetrofitError;
 /**
  * Created by Bartosz Kozajda on 26.03.2016.
  */
-public class CompaniesFragment extends Fragment implements CompaniesAdapter.ClickListener, NetworkStateReceiver.NetworkStateReceiverListener{
+public class CompaniesFragment extends Fragment implements CompaniesAdapter.ClickListener, NetworkStateReceiver.NetworkStateReceiverListener, Serializable {
 
     private RecyclerView recyclerView;
     private CompaniesAdapter companiesAdapter;
     private ProgressBar progressBar;
     private NetworkStateReceiver networkStateReceiver;
     private Snackbar snackbar;
+    private List<Company> company;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,8 +70,10 @@ public class CompaniesFragment extends Fragment implements CompaniesAdapter.Clic
 
     @Override
     public void onItemClick(int position, View v) {
-        CompanyActivity.setPosition(position);
         Intent myIntent = new Intent(getActivity(), CompanyActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("item", company.get(position));
+        myIntent.putExtras(bundle);
         startActivity(myIntent);
     }
 
@@ -90,7 +91,7 @@ public class CompaniesFragment extends Fragment implements CompaniesAdapter.Clic
             @Override
             public void onSuccess(List<Company> response) {
                 companiesAdapter.setCompanies(response);
-                CompanyActivity.setCompanies(response);
+                company = response;
                 progressBar.setVisibility(View.GONE);
             }
 

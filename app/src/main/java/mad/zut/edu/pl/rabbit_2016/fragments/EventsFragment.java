@@ -15,7 +15,6 @@ import android.widget.ProgressBar;
 import java.util.List;
 
 import mad.zut.edu.pl.rabbit_2016.R;
-import mad.zut.edu.pl.rabbit_2016.adapters.CompaniesAdapter;
 import mad.zut.edu.pl.rabbit_2016.adapters.EventsAdapter;
 import mad.zut.edu.pl.rabbit_2016.api.NetworkStateReceiver;
 import mad.zut.edu.pl.rabbit_2016.api.RequestCallback;

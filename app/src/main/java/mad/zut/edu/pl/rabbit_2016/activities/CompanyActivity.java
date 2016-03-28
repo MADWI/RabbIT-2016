@@ -14,8 +14,6 @@ import com.hannesdorfmann.swipeback.Position;
 import com.hannesdorfmann.swipeback.SwipeBack;
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
-
 import mad.zut.edu.pl.rabbit_2016.R;
 import mad.zut.edu.pl.rabbit_2016.api.NetworkStateReceiver;
 import mad.zut.edu.pl.rabbit_2016.model.company.Company;
@@ -25,8 +23,7 @@ import mad.zut.edu.pl.rabbit_2016.model.company.Company;
  */
 public class CompanyActivity extends AppCompatActivity implements NetworkStateReceiver.NetworkStateReceiverListener {
 
-    private static List<Company> company;
-    private static int position;
+    private Company company;
     private ImageView companyImageView;
     private TextView companyNameView;
     private TextView companyWebsiteView;
@@ -65,28 +62,21 @@ public class CompanyActivity extends AppCompatActivity implements NetworkStateRe
         SwipeBack.attach(this, Position.LEFT)
                 .setSwipeBackView(R.layout.swipeback_default);
 
-        setData(position);
+        company = (Company) getIntent().getExtras().getSerializable("item");
+        setData();
     }
 
-    private void setData(int position){
-        companyNameView.setText(company.get(position).getName());
-        companyWebsiteView.setText(company.get(position).getWebsiteUrl());
-        companyRoomView.setText(company.get(position).getRoom());
-        companyDescView.setText(company.get(position).getDescription());
+    private void setData(){
+        companyNameView.setText(company.getName());
+        companyWebsiteView.setText(company.getWebsiteUrl());
+        companyRoomView.setText(company.getRoom());
+        companyDescView.setText(company.getDescription());
         Picasso.with(this)
-                .load(company.get(position).getLogoUrl())
+                .load(company.getLogoUrl())
                 .error(R.drawable.no_image)
                 .fit()
                 .centerInside()
                 .into(companyImageView);
-    }
-
-    public static void setCompanies(List<Company> data) {
-        company = data;
-    }
-
-    public static void setPosition(int data){
-        position = data;
     }
 
     @Override
