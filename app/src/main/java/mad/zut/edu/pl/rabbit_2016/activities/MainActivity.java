@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import mad.zut.edu.pl.rabbit_2016.R;
+import mad.zut.edu.pl.rabbit_2016.api.NetworkStateReceiver;
 import mad.zut.edu.pl.rabbit_2016.fragments.AuthorsFragment;
 import mad.zut.edu.pl.rabbit_2016.fragments.CompaniesFragment;
 import mad.zut.edu.pl.rabbit_2016.fragments.EventsFragment;
@@ -33,9 +34,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static final String TAB_STANDS = "sta";
     public static final String TAB_SPECIAL_GUEST = "sgu";
     public static final String TAB_ABOUT_US = "abo";
-    private BroadcastReceiver ConnectivityReceiver;
     private DrawerLayout drawer;
-    private IntentFilter filter;
 
     /**
      * Fragments selectable from drawer
@@ -125,44 +124,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 item = DRAWER_FRAGMENTS[0];
             }
 
-            ConnectivityChangeReceiver();
-
-            filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-            this.registerReceiver(ConnectivityReceiver, filter);
-
             // Actually open the fragment
             openFragment(item);
             mNavigationView.setCheckedItem(item.id);
+
         }
-    }
-
-    private void  ConnectivityChangeReceiver(){
-         ConnectivityReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                ConnectivityManager cm =
-                        (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-                Snackbar snackbar = Snackbar
-                        .make(drawer, getResources().getString(R.string.no_internet), Snackbar.LENGTH_INDEFINITE)
-                        .setAction(getResources().getString(R.string.settings), new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
-                            }
-                        });
-
-                NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-                boolean isConnected = activeNetwork != null &&
-                        activeNetwork.isConnectedOrConnecting();
-
-                if(!isConnected){
-                    snackbar.show();
-                }else {
-                    snackbar.dismiss();
-                }
-            }
-        };
     }
 
     @Override
@@ -208,14 +174,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             super.onBackPressed();
         }
-
-        this.unregisterReceiver(ConnectivityReceiver);
-    }
-
-    @Override
-    public void onResume(){
-        super.onResume();
-        this.registerReceiver(ConnectivityReceiver, filter);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -240,7 +198,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
     private static DrawerFragmentItem findDrawerItemFragmentWithId(int id) {
         for (DrawerFragmentItem item : DRAWER_FRAGMENTS) {
