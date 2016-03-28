@@ -121,6 +121,15 @@ public class CompanyActivity extends AppCompatActivity implements NetworkStateRe
         }catch (IllegalArgumentException e){
 
         }
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        try{
+            this.unregisterReceiver(networkStateReceiver);
+        }catch (IllegalArgumentException e){
+
+        }
     }
 }

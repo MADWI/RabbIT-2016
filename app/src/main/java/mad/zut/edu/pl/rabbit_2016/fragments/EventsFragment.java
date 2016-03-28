@@ -111,4 +111,14 @@ public class EventsFragment extends Fragment implements NetworkStateReceiver.Net
         super.onPause();
         getActivity().unregisterReceiver(networkStateReceiver);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        try{
+            getActivity().unregisterReceiver(networkStateReceiver);
+        }catch (IllegalArgumentException e){
+
+        }
+    }
 }
