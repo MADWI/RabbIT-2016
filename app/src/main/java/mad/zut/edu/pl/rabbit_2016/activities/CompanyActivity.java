@@ -57,7 +57,6 @@ public class CompanyActivity extends AppCompatActivity implements NetworkStateRe
 
         networkStateReceiver = new NetworkStateReceiver();
         networkStateReceiver.addListener(this);
-        this.registerReceiver(networkStateReceiver, new IntentFilter(android.net.ConnectivityManager.CONNECTIVITY_ACTION));
 
         SwipeBack.attach(this, Position.LEFT)
                 .setSwipeBackView(R.layout.swipeback_default);
@@ -106,16 +105,6 @@ public class CompanyActivity extends AppCompatActivity implements NetworkStateRe
     @Override
     public void onPause() {
         super.onPause();
-        try{
-            this.unregisterReceiver(networkStateReceiver);
-        }catch (IllegalArgumentException e){
-
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
         try{
             this.unregisterReceiver(networkStateReceiver);
         }catch (IllegalArgumentException e){

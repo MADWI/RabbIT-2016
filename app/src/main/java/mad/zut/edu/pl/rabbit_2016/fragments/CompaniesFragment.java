@@ -47,7 +47,6 @@ public class CompaniesFragment extends Fragment implements CompaniesAdapter.Clic
 
         networkStateReceiver = new NetworkStateReceiver();
         networkStateReceiver.addListener(this);
-        getActivity().registerReceiver(networkStateReceiver, new IntentFilter(android.net.ConnectivityManager.CONNECTIVITY_ACTION));
 
         progressBar.setVisibility(View.VISIBLE);
         initRecyclerView();
@@ -123,15 +122,5 @@ public class CompaniesFragment extends Fragment implements CompaniesAdapter.Clic
     public void onPause() {
         super.onPause();
         getActivity().unregisterReceiver(networkStateReceiver);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        try{
-            getActivity().unregisterReceiver(networkStateReceiver);
-        }catch (IllegalArgumentException e){
-
-        }
     }
 }

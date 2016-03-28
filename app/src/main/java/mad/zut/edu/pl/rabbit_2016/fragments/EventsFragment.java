@@ -44,7 +44,6 @@ public class EventsFragment extends Fragment implements NetworkStateReceiver.Net
 
         networkStateReceiver = new NetworkStateReceiver();
         networkStateReceiver.addListener(this);
-        getActivity().registerReceiver(networkStateReceiver, new IntentFilter(android.net.ConnectivityManager.CONNECTIVITY_ACTION));
 
         progressBar.setVisibility(View.VISIBLE);
         initRecyclerView();
@@ -52,7 +51,7 @@ public class EventsFragment extends Fragment implements NetworkStateReceiver.Net
         return v;
     }
 
-    private void initRecyclerView(){
+    private void initRecyclerView() {
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
@@ -60,7 +59,7 @@ public class EventsFragment extends Fragment implements NetworkStateReceiver.Net
         recyclerView.setAdapter(eventsAdapter);
     }
 
-    private void downloadEvents(){
+    private void downloadEvents() {
         RestClientManager.getAllEvents(new RequestCallback<>(new RequestListener<List<Event>>() {
             @Override
             public void onSuccess(List<Event> response) {
@@ -100,7 +99,7 @@ public class EventsFragment extends Fragment implements NetworkStateReceiver.Net
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         getActivity().registerReceiver(networkStateReceiver, new IntentFilter(android.net.ConnectivityManager.CONNECTIVITY_ACTION));
     }
@@ -109,15 +108,5 @@ public class EventsFragment extends Fragment implements NetworkStateReceiver.Net
     public void onPause() {
         super.onPause();
         getActivity().unregisterReceiver(networkStateReceiver);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        try{
-            getActivity().unregisterReceiver(networkStateReceiver);
-        }catch (IllegalArgumentException e){
-
-        }
     }
 }
