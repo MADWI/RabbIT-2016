@@ -83,7 +83,6 @@ public class CompanyActivity extends AppCompatActivity implements NetworkStateRe
         super.onBackPressed();
         overridePendingTransition(R.anim.trans_right_in, R.anim.trans_right_out);
         overridePendingTransition(R.anim.swipeback_stack_to_front, R.anim.swipeback_stack_right_out);
-        this.unregisterReceiver(networkStateReceiver);
     }
 
     @Override
