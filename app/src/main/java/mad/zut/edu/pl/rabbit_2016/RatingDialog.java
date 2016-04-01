@@ -54,20 +54,24 @@ public class RatingDialog extends Dialog {
                 opinions[i] = (byte) ratingBars.get(i).getRating();
             }
 
-            RestClientManager.sendCompanyOpinions(
-                    new CompanyPostData(Integer.valueOf(company.getId()), opinions, getDeviceId(), getMd5Hash()), new Callback<Response>() {
-                        @Override
-                        public void success(Response response, Response response2) {
-                            Toast.makeText(getContext(), response.getReason(), Toast.LENGTH_SHORT).show();
-                            dismiss();
-                        }
-
-                        @Override
-                        public void failure(RetrofitError error) {
-                            Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
+            sendCompanyOpinions(opinions);
         }
+    }
+
+    private void sendCompanyOpinions(Byte[] opinions) {
+        RestClientManager.sendCompanyOpinions(
+                new CompanyPostData(Integer.valueOf(company.getId()), opinions, getDeviceId(), getMd5Hash()), new Callback<Response>() {
+                    @Override
+                    public void success(Response response, Response response2) {
+                        Toast.makeText(getContext(), R.string.send_success, Toast.LENGTH_SHORT).show();
+                        dismiss();
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                        Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private Boolean isAllRatesSet() {

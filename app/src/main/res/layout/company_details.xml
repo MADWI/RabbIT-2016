@@ -108,10 +108,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btn_rate_company"
+            android:text="@string/rate"
             android:layout_below="@+id/text_rate_company"
-            android:layout_alignLeft="@+id/company_room_view"
-            android:layout_alignStart="@+id/company_room_view"
-            android:text="@string/rate" />
+            android:layout_centerHorizontal="true" />
 
         <TextView
             android:layout_width="wrap_content"
