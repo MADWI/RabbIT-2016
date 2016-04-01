@@ -8,4 +8,5 @@ public class Constants {
     public static final String COMPANIES_API_KEY = "company";
     public static final String EVENTS_API_KEY = "event";
     public static final String OPINIONS_API_KEY = "opinion";
+    public static final String MD5_KEY = "opinion_rabbit_key";
 }

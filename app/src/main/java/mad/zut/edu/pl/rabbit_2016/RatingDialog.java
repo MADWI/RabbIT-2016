@@ -2,11 +2,15 @@ package mad.zut.edu.pl.rabbit_2016;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.provider.Settings;
+import android.support.annotation.Nullable;
 import android.view.Window;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import butterknife.Bind;
@@ -28,6 +32,7 @@ public class RatingDialog extends Dialog {
     @Bind({R.id.rating_bar_criterion1, R.id.rating_bar_criterion2, R.id.rating_bar_criterion3})
     List<RatingBar> ratingBars;
 
+    private Company company;
 
     public RatingDialog(Context context, Company company) {
         super(context);
@@ -35,17 +40,20 @@ public class RatingDialog extends Dialog {
         setContentView(R.layout.rating_dialog);
         ButterKnife.bind(this);
 
+        this.company = company;
         companyNameView.setText(company.getName());
     }
 
     @OnClick(R.id.btn_send_ratings)
     public void onClick() {
         if (isAllRatesSet()) {
-            Byte[] opinions = new Byte[3];
-            opinions[0] = 3;
-            opinions[1] = 1;
-            opinions[2] = 5;
-            Response response = RestClientManager.sendCompanyOpinions(new CompanyPostData(1, opinions, 234234, new Byte[]{2, 3, 4, 2, 3, 4}));
+            Byte[] opinions = new Byte[ratingBars.size()];
+            for (int i = 0; i < ratingBars.size(); i++) {
+                opinions[i] = (byte) ratingBars.get(i).getRating();
+            }
+
+            Response response = RestClientManager.sendCompanyOpinions(
+                    new CompanyPostData(Integer.valueOf(company.getId()), opinions, getDeviceId(), getMd5Hash()));
             Toast.makeText(getContext(), response.getReason(), Toast.LENGTH_SHORT).show();
         }
     }
@@ -58,5 +66,29 @@ public class RatingDialog extends Dialog {
             }
         }
         return true;
+    }
+
+    @Nullable
+    private String getMd5Hash() {
+        String key = Constants.MD5_KEY + getDeviceId();
+        StringBuilder digest = new StringBuilder();
+        byte[] digestBytes;
+
+        try {
+            digestBytes = MessageDigest.getInstance("md5").digest(key.getBytes());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        for (int i = 0; i < 16; i++) {
+            digest.append(String.format("%02x", digestBytes[i]));
+        }
+
+        return digest.toString();
+    }
+
+    private String getDeviceId() {
+        return Settings.Secure.getString(getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
     }
 }

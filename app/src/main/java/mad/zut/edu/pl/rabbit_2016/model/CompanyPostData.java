@@ -6,10 +6,10 @@ package mad.zut.edu.pl.rabbit_2016.model;
 public class CompanyPostData {
     private final int companyId;
     private final Byte[] opinions;
-    private final int deviceUUID;
-    private final Byte[] key;
+    private final String deviceUUID;
+    private final String key;
 
-    public CompanyPostData(int companyId, Byte[] opinions, int deviceUUID, Byte[] key) {
+    public CompanyPostData(int companyId, Byte[] opinions, String deviceUUID, String key) {
         this.companyId = companyId;
         this.opinions = opinions;
         this.deviceUUID = deviceUUID;
