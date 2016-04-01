@@ -107,7 +107,7 @@
         <RatingBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/rating_bar_criterium1"
+            android:id="@+id/rating_bar_criterium"
             android:layout_below="@+id/text_rate_company"
             android:progressTint="@color/ratingColor"
             android:layout_alignLeft="@+id/company_room_view"
@@ -124,7 +124,7 @@
             android:layout_marginTop="@dimen/default_margin"
             android:layout_alignLeft="@+id/company_room_view"
             android:layout_alignStart="@+id/company_room_view"
-            android:layout_below="@+id/rating_bar_criterium1" />
+            android:layout_below="@+id/rating_bar_criterium" />
 
         <TextView
             android:layout_width="match_parent"
