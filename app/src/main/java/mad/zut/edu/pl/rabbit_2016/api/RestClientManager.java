@@ -2,9 +2,11 @@ package mad.zut.edu.pl.rabbit_2016.api;
 
 import java.util.List;
 
+import mad.zut.edu.pl.rabbit_2016.model.CompanyPostData;
 import mad.zut.edu.pl.rabbit_2016.model.company.Company;
 import mad.zut.edu.pl.rabbit_2016.model.event.Event;
 import retrofit.Callback;
+import retrofit.client.Response;
 
 /**
  * Created by Bartosz Kozajda on 24.03.2016.
@@ -24,5 +26,10 @@ public class RestClientManager {
     public static void getAllEvents(Callback<List<Event>> callback){
         RestInterface restInterface = getRestApi();
         restInterface.getAllEvents(callback);
+    }
+
+    public static Response sendCompanyOpinions(CompanyPostData companyPostData) {
+        RestInterface restInterface = getRestApi();
+        return restInterface.sendCompanyOpinions(companyPostData);
     }
 }
