@@ -1,5 +1,6 @@
 package mad.zut.edu.pl.rabbit_2016.activities;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
@@ -7,14 +8,19 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hannesdorfmann.swipeback.Position;
 import com.hannesdorfmann.swipeback.SwipeBack;
 import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +29,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import mad.zut.edu.pl.rabbit_2016.R;
+import mad.zut.edu.pl.rabbit_2016.RatingDialog;
 import mad.zut.edu.pl.rabbit_2016.api.NetworkStateReceiver;
 import mad.zut.edu.pl.rabbit_2016.model.company.Company;
 
@@ -45,6 +52,9 @@ public class CompanyActivity extends AppCompatActivity implements NetworkStateRe
 
     @Bind(R.id.company_desc_view)
     TextView companyDescView;
+
+//    @Bind(R.id.btn_rate_company)
+//    Button buttonRateCompany;
 
     @Bind(R.id.layout_id)
     ScrollView scrollView;
@@ -90,6 +100,11 @@ public class CompanyActivity extends AppCompatActivity implements NetworkStateRe
                 .fit()
                 .centerInside()
                 .into(companyImageView);
+    }
+
+    @OnClick(R.id.btn_rate_company)
+    public void onClick(View v) {
+        new RatingDialog(this, company).show();
     }
 
     @Override

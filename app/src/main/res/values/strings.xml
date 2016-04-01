@@ -11,9 +11,9 @@
     <string name="room_string">Sala:</string>
 
     <string name="rate_company_string">Oceń firmę:</string>
-    <string name="criterium_1_string">Kryterium 1:</string>
-    <string name="criterium_2_string">Krytetium 2:</string>
-    <string name="criterium_3_string">Kryterium 3:</string>
+    <string name="criterion_1_string">Kryterium 1:</string>
+    <string name="criterion_2_string">Krytetium 2:</string>
+    <string name="criterion_3_string">Kryterium 3:</string>
 
     <string name="about_company_string">O firmie:</string>
     <string name="about_guest_string">Kim jest:</string>
@@ -32,4 +32,6 @@
 
     <string name="no_internet">Brak połączenia z internetem</string>
     <string name="settings">Ustawienia</string>
+    <string name="rate">Oceń</string>
+    <string name="send_ratings">Send ratings</string>
 </resources>

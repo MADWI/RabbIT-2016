@@ -104,16 +104,14 @@
             android:layout_marginTop="@dimen/default_margin"
             android:text="@string/rate_company_string" />
 
-        <RatingBar
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/rating_bar_criterium"
+            android:id="@+id/btn_rate_company"
             android:layout_below="@+id/text_rate_company"
-            android:progressTint="@color/ratingColor"
             android:layout_alignLeft="@+id/company_room_view"
             android:layout_alignStart="@+id/company_room_view"
-            android:numStars="@integer/rating_max_value"
-            android:stepSize="1" />
+            android:text="@string/rate" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -124,7 +122,7 @@
             android:layout_marginTop="@dimen/default_margin"
             android:layout_alignLeft="@+id/company_room_view"
             android:layout_alignStart="@+id/company_room_view"
-            android:layout_below="@+id/rating_bar_criterium" />
+            android:layout_below="@+id/btn_rate_company" />
 
         <TextView
             android:layout_width="match_parent"
