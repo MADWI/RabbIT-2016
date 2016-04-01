@@ -28,8 +28,8 @@ public class RestClientManager {
         restInterface.getAllEvents(callback);
     }
 
-    public static Response sendCompanyOpinions(CompanyPostData companyPostData) {
+    public static void sendCompanyOpinions(CompanyPostData companyPostData, Callback<Response> callback) {
         RestInterface restInterface = getRestApi();
-        return restInterface.sendCompanyOpinions(companyPostData);
+        restInterface.sendCompanyOpinions(companyPostData, callback);
     }
 }

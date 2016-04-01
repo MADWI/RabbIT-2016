@@ -1,7 +1,6 @@
 package mad.zut.edu.pl.rabbit_2016.api;
 
 import java.util.List;
-import java.util.Map;
 
 import mad.zut.edu.pl.rabbit_2016.Constants;
 import mad.zut.edu.pl.rabbit_2016.model.CompanyPostData;
@@ -24,6 +23,6 @@ public interface RestInterface {
     void getAllEvents(Callback<List<Event>> cb);
 
     @POST("/" + Constants.OPINIONS_API_KEY + "/")
-    Response sendCompanyOpinions(@Body CompanyPostData body);
+    void sendCompanyOpinions(@Body CompanyPostData body, Callback<Response> callback);
 }
 

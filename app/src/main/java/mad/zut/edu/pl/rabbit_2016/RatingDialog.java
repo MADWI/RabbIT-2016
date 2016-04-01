@@ -19,6 +19,8 @@ import butterknife.OnClick;
 import mad.zut.edu.pl.rabbit_2016.api.RestClientManager;
 import mad.zut.edu.pl.rabbit_2016.model.CompanyPostData;
 import mad.zut.edu.pl.rabbit_2016.model.company.Company;
+import retrofit.Callback;
+import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 /**
@@ -52,9 +54,19 @@ public class RatingDialog extends Dialog {
                 opinions[i] = (byte) ratingBars.get(i).getRating();
             }
 
-            Response response = RestClientManager.sendCompanyOpinions(
-                    new CompanyPostData(Integer.valueOf(company.getId()), opinions, getDeviceId(), getMd5Hash()));
-            Toast.makeText(getContext(), response.getReason(), Toast.LENGTH_SHORT).show();
+            RestClientManager.sendCompanyOpinions(
+                    new CompanyPostData(Integer.valueOf(company.getId()), opinions, getDeviceId(), getMd5Hash()), new Callback<Response>() {
+                        @Override
+                        public void success(Response response, Response response2) {
+                            Toast.makeText(getContext(), response.getReason(), Toast.LENGTH_SHORT).show();
+                            dismiss();
+                        }
+
+                        @Override
+                        public void failure(RetrofitError error) {
+                            Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
         }
     }
 
