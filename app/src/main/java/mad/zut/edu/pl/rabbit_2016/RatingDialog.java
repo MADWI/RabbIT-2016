@@ -59,7 +59,7 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
     @OnClick(R.id.btn_send_ratings)
     public void onClick() {
         if (isAllRatesSet()) {
-            Byte[] opinions = new Byte[ratingBars.size()];
+            byte[] opinions = new byte[ratingBars.size()];
             for (int i = 0; i < ratingBars.size(); i++) {
                 opinions[i] = (byte) ratingBars.get(i).getRating();
             }
@@ -68,7 +68,7 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
         }
     }
 
-    private void sendCompanyOpinions(Byte[] opinions) {
+    private void sendCompanyOpinions(byte[] opinions) {
         RestClientManager.sendCompanyOpinions(
                 new CompanyPostData(companyId, opinions, getDeviceId(), getMd5Hash()), new Callback<Response>() {
                     @Override
@@ -85,7 +85,7 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
                 });
     }
 
-    private Boolean isAllRatesSet() {
+    private boolean isAllRatesSet() {
         for (RatingBar ratingBar : ratingBars) {
             if (ratingBar.getRating() < 1) {
                 Toast.makeText(getContext(), "You must set all criterion", Toast.LENGTH_SHORT).show();
