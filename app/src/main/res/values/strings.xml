@@ -35,4 +35,5 @@
     <string name="rate">Oceń</string>
     <string name="send_ratings">Send ratings</string>
     <string name="send_success">Send success</string>
+    <string name="send_error">Send error</string>
 </resources>

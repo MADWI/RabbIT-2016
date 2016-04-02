@@ -17,6 +17,7 @@ import com.squareup.picasso.Picasso;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import mad.zut.edu.pl.rabbit_2016.Constants;
 import mad.zut.edu.pl.rabbit_2016.R;
 import mad.zut.edu.pl.rabbit_2016.RatingDialog;
 import mad.zut.edu.pl.rabbit_2016.api.NetworkStateReceiver;
@@ -90,7 +91,13 @@ public class CompanyActivity extends AppCompatActivity implements NetworkStateRe
 
     @OnClick(R.id.btn_rate_company)
     public void onClick(View v) {
-        new RatingDialog(this, company).show();
+        Bundle arguments = new Bundle();
+        arguments.putString(Constants.COMPANY_NAME_KEY, company.getName());
+        arguments.putInt(Constants.COMPANY_ID_KEY, Integer.valueOf(company.getId()));
+
+        RatingDialog ratingDialog = new RatingDialog();
+        ratingDialog.setArguments(arguments);
+        ratingDialog.show(getSupportFragmentManager(), Constants.RATING_FRAGMENT);
     }
 
     @Override
@@ -118,11 +125,7 @@ public class CompanyActivity extends AppCompatActivity implements NetworkStateRe
 
     @Override
     public void onPause() {
-//        try {
         unregisterReceiver(networkStateReceiver);
-//        } catch (IllegalArgumentException e){
-//
-//        }
         super.onPause();
     }
 }

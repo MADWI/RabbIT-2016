@@ -1,9 +1,11 @@
 package mad.zut.edu.pl.rabbit_2016;
 
-import android.app.Dialog;
-import android.content.Context;
+import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -18,7 +20,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import mad.zut.edu.pl.rabbit_2016.api.RestClientManager;
 import mad.zut.edu.pl.rabbit_2016.model.CompanyPostData;
-import mad.zut.edu.pl.rabbit_2016.model.company.Company;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -26,7 +27,7 @@ import retrofit.client.Response;
 /**
  * Created by Marek Macko on 01.04.2016.
  */
-public class RatingDialog extends Dialog {
+public class RatingDialog extends android.support.v4.app.DialogFragment {
 
     @Bind(R.id.rating_company_name_view)
     TextView companyNameView;
@@ -34,17 +35,26 @@ public class RatingDialog extends Dialog {
     @Bind({R.id.rating_bar_criterion1, R.id.rating_bar_criterion2, R.id.rating_bar_criterion3})
     List<RatingBar> ratingBars;
 
-    private Company company;
+    private int companyId;
 
-    public RatingDialog(Context context, Company company) {
-        super(context);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.rating_dialog);
-        ButterKnife.bind(this);
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.rating_dialog, container, false);
+        ButterKnife.bind(this, view);
 
-        this.company = company;
-        companyNameView.setText(company.getName());
+        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+
+        Bundle arguments = getArguments();
+        String companyName = arguments.getString(Constants.COMPANY_NAME_KEY);
+        companyId = arguments.getInt(Constants.COMPANY_ID_KEY);
+
+        companyNameView.setText(companyName);
+
+        return view;
     }
+
+
 
     @OnClick(R.id.btn_send_ratings)
     public void onClick() {
@@ -60,16 +70,17 @@ public class RatingDialog extends Dialog {
 
     private void sendCompanyOpinions(Byte[] opinions) {
         RestClientManager.sendCompanyOpinions(
-                new CompanyPostData(Integer.valueOf(company.getId()), opinions, getDeviceId(), getMd5Hash()), new Callback<Response>() {
+                new CompanyPostData(companyId, opinions, getDeviceId(), getMd5Hash()), new Callback<Response>() {
                     @Override
                     public void success(Response response, Response response2) {
-                        Toast.makeText(getContext(), R.string.send_success, Toast.LENGTH_SHORT).show();
                         dismiss();
+                        Toast.makeText(getContext(), R.string.send_success, Toast.LENGTH_SHORT).show();
+
                     }
 
                     @Override
                     public void failure(RetrofitError error) {
-                        Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), R.string.send_error, Toast.LENGTH_SHORT).show();
                     }
                 });
     }
