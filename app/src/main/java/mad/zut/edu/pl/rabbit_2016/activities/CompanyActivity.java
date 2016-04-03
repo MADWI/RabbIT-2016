@@ -14,7 +14,12 @@ import com.hannesdorfmann.swipeback.Position;
 import com.hannesdorfmann.swipeback.SwipeBack;
 import com.squareup.picasso.Picasso;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import mad.zut.edu.pl.rabbit_2016.Constants;
 import mad.zut.edu.pl.rabbit_2016.R;
+import mad.zut.edu.pl.rabbit_2016.RatingDialog;
 import mad.zut.edu.pl.rabbit_2016.api.NetworkStateReceiver;
 import mad.zut.edu.pl.rabbit_2016.model.company.Company;
 
@@ -23,13 +28,25 @@ import mad.zut.edu.pl.rabbit_2016.model.company.Company;
  */
 public class CompanyActivity extends AppCompatActivity implements NetworkStateReceiver.NetworkStateReceiverListener {
 
+    @Bind(R.id.company_image_view)
+    ImageView companyImageView;
+
+    @Bind(R.id.company_name_view)
+    TextView companyNameView;
+
+    @Bind(R.id.company_website_view)
+    TextView companyWebsiteView;
+
+    @Bind(R.id.company_room_view)
+    TextView companyRoomView;
+
+    @Bind(R.id.company_desc_view)
+    TextView companyDescView;
+
+    @Bind(R.id.layout_id)
+    ScrollView scrollView;
+
     private Company company;
-    private ImageView companyImageView;
-    private TextView companyNameView;
-    private TextView companyWebsiteView;
-    private TextView companyRoomView;
-    private TextView companyDescView;
-    private ScrollView scrollView;
     private NetworkStateReceiver networkStateReceiver;
     private Snackbar snackbar;
 
@@ -37,14 +54,8 @@ public class CompanyActivity extends AppCompatActivity implements NetworkStateRe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.company_details);
+        ButterKnife.bind(this);
         overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out);
-
-        scrollView = (ScrollView) findViewById(R.id.layout_id);
-        companyImageView = (ImageView) findViewById(R.id.company_image_view);
-        companyNameView = (TextView) findViewById(R.id.company_name_view);
-        companyWebsiteView = (TextView) findViewById(R.id.company_website_view);
-        companyRoomView = (TextView) findViewById(R.id.company_room_view);
-        companyDescView = (TextView) findViewById(R.id.company_desc_view);
 
         snackbar = Snackbar
                 .make(scrollView, getResources().getString(R.string.no_internet), Snackbar.LENGTH_INDEFINITE)
@@ -78,6 +89,17 @@ public class CompanyActivity extends AppCompatActivity implements NetworkStateRe
                 .into(companyImageView);
     }
 
+    @OnClick(R.id.btn_rate_company)
+    public void onClick(View v) {
+        Bundle arguments = new Bundle();
+        arguments.putString(Constants.COMPANY_NAME_KEY, company.getName());
+        arguments.putInt(Constants.COMPANY_ID_KEY, Integer.valueOf(company.getId()));
+
+        RatingDialog ratingDialog = new RatingDialog();
+        ratingDialog.setArguments(arguments);
+        ratingDialog.show(getSupportFragmentManager(), Constants.RATING_FRAGMENT);
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -103,11 +125,7 @@ public class CompanyActivity extends AppCompatActivity implements NetworkStateRe
 
     @Override
     public void onPause() {
+        unregisterReceiver(networkStateReceiver);
         super.onPause();
-        try{
-            this.unregisterReceiver(networkStateReceiver);
-        }catch (IllegalArgumentException e){
-
-        }
     }
 }

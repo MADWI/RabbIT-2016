@@ -10,15 +10,14 @@
         android:textAppearance="?android:textAppearanceLarge"
         android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold"
-        android:gravity="center_horizontal"
-        android:text="Bright one" />
+        android:gravity="center_horizontal"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/criterium_1_string"
-        android:id="@+id/text_criterium1"
+        android:text="@string/criterion_1_string"
+        android:id="@+id/text_criterion1"
         android:textColor="@color/textDefault"
         android:layout_below="@+id/rating_company_name_view"
         android:layout_marginTop="@dimen/default_margin"
@@ -27,12 +26,11 @@
     <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/rating_bar_criterium1"
-        android:layout_below="@+id/text_criterium1"
+        android:id="@+id/rating_bar_criterion1"
+        android:layout_below="@+id/text_criterion1"
         android:progressTint="@color/ratingColor"
         android:layout_centerHorizontal="true"
         android:numStars="@integer/rating_max_value"
-        android:rating="3"
         android:stepSize="1" />
 
     <TextView
@@ -40,21 +38,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_margin"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/criterium_2_string"
+        android:text="@string/criterion_2_string"
         android:textColor="@color/textDefault"
-        android:id="@+id/text_criterium2"
+        android:id="@+id/text_criterion2"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/rating_bar_criterium1" />
+        android:layout_below="@+id/rating_bar_criterion1"/>
 
     <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/rating_bar_criterium2"
-        android:layout_below="@+id/text_criterium2"
+        android:id="@+id/rating_bar_criterion2"
+        android:layout_below="@+id/text_criterion2"
         android:progressTint="@color/ratingColor"
         android:layout_centerHorizontal="true"
         android:numStars="@integer/rating_max_value"
-        android:rating="2"
         android:stepSize="1" />
 
     <TextView
@@ -64,20 +61,27 @@
         android:textColor="@color/textDefault"
         android:layout_centerHorizontal="true"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/criterium_3_string"
-        android:id="@+id/text_criterium3"
-        android:layout_below="@+id/rating_bar_criterium2" />
+        android:text="@string/criterion_3_string"
+        android:id="@+id/text_criterion3"
+        android:layout_below="@+id/rating_bar_criterion2" />
 
     <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:id="@+id/rating_bar_criterium3"
-        android:layout_below="@+id/text_criterium3"
+        android:id="@+id/rating_bar_criterion3"
+        android:layout_below="@+id/text_criterion3"
         android:progressTint="@color/ratingColor"
-        android:numStars="@integer/rating_max_value"
         android:layout_marginBottom="@dimen/default_margin"
-        android:rating="4"
+        android:numStars="@integer/rating_max_value"
         android:stepSize="1" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/send_ratings"
+        android:id="@+id/btn_send_ratings"
+        android:layout_below="@+id/rating_bar_criterion3"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
