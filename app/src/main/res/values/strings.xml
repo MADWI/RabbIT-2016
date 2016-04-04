@@ -29,6 +29,12 @@
     <string name="mad_website_desc_string">www.mad.wi.zut.edu.pl</string>
     <string name="mad_facebook_string">Facebooku:</string>
     <string name="mad_facebook_website_string">https://www.facebook.com/MADWIZUT</string>
+    <string name="authors">Autorzy:</string>
+    <string name="authors_desc">Sara Anku \nMichał Bednarski \nDawid Heyman \nBartosz Kozajda \nMarek Macko \nDamian Malarczyk \nWaldemar Sambor</string>
+    <string name="ssa_patron">Opiekun koła naukowego:</string>
+    <string name="ssa_patron_desc">dr inż. Radosław Maciaszczyk</string>
+    <string name="legal_notices_title">\nLegal notices</string>
+    <string name="legal_notices">Application use open source software:\n- Retrofit Copyright 2013 Square, Inc.\n- ButterKnife Copyright 2013 Jake Wharton\n- SwipeBack by sockeqwe\n\nLicense:\nCopyright 2016 Mobile Applications Developers WI ZUT\n\nLicensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at\n\nhttp://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</string>
 
     <string name="no_internet">Brak połączenia z internetem</string>
     <string name="settings">Ustawienia</string>

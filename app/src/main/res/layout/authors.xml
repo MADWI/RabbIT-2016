@@ -11,7 +11,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/about_us_string"
             android:fontFamily="sans-serif-regular"
-            android:textColor="@color/textDefault"
+            android:textColor="@color/colorPrimaryDark"
             android:id="@+id/textView"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
@@ -55,14 +55,71 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/authors"
+            android:fontFamily="sans-serif-regular"
+            android:textColor="@color/colorPrimaryDark"
+            android:id="@+id/authors"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_below="@+id/textView2"
+            android:layout_alignLeft="@+id/textView2"
+            android:layout_alignStart="@+id/textView2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/about_us_font_size"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/textDefault"
+            android:paddingRight="@dimen/default_padding"
+            android:layout_marginTop="@dimen/default_margin"
+            android:text="@string/authors_desc"
+            android:gravity=""
+            android:id="@+id/authorsDesc"
+            android:layout_below="@+id/authors"
+            android:layout_alignLeft="@+id/authors"
+            android:layout_alignStart="@+id/authors" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/ssa_patron"
+            android:fontFamily="sans-serif-regular"
+            android:textColor="@color/colorPrimaryDark"
+            android:id="@+id/ssaPatron"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_below="@+id/authorsDesc"
+            android:layout_alignLeft="@+id/authorsDesc"
+            android:layout_alignStart="@+id/authorsDesc" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/about_us_font_size"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/textDefault"
+            android:paddingRight="@dimen/default_padding"
+            android:layout_marginTop="@dimen/default_margin"
+            android:text="@string/ssa_patron_desc"
+            android:gravity=""
+            android:id="@+id/ssaPatronDesc"
+            android:layout_below="@+id/ssaPatron"
+            android:layout_alignLeft="@+id/ssaPatron"
+            android:layout_alignStart="@+id/ssaPatron" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/want_to_join_string"
             android:fontFamily="sans-serif-regular"
             android:textColor="@color/colorPrimaryDark"
             android:id="@+id/textView3"
             android:layout_marginTop="@dimen/default_margin"
-            android:layout_below="@+id/textView2"
-            android:layout_alignLeft="@+id/textView2"
-            android:layout_alignStart="@+id/textView2" />
+            android:layout_below="@+id/ssaPatronDesc"
+            android:layout_alignLeft="@+id/ssaPatronDesc"
+            android:layout_alignStart="@+id/ssaPatronDesc" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -151,6 +208,29 @@
             android:layout_below="@+id/textView9"
             android:layout_alignLeft="@+id/textView9"
             android:layout_alignStart="@+id/textView9" />
+
+        <TextView
+            android:id="@+id/legalNoticesTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView10"
+            android:textStyle="bold"
+            android:text="@string/legal_notices_title"
+            android:textSize="14sp"
+            android:layout_marginLeft="8dp" />
+
+        <TextView
+            android:id="@+id/legalNotices"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/legalNoticesTitle"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginTop="8dp"
+            android:text="@string/legal_notices"
+            android:textSize="12sp"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp" />
 
     </RelativeLayout>
 </ScrollView>
