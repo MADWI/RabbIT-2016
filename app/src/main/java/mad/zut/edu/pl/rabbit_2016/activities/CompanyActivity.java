@@ -27,7 +27,8 @@ import mad.zut.edu.pl.rabbit_2016.model.company.Company;
 /**
  * Created by Bartosz Kozajda on 26.03.2016.
  */
-public class CompanyActivity extends AppCompatActivity implements NetworkStateReceiver.NetworkStateReceiverListener {
+public class CompanyActivity extends AppCompatActivity
+        implements NetworkStateReceiver.NetworkStateReceiverListener, RatingDialog.OnRatesSendListener {
 
     @Bind(R.id.company_image_view)
     ImageView companyImageView;
@@ -106,7 +107,6 @@ public class CompanyActivity extends AppCompatActivity implements NetworkStateRe
                     RatingDialog ratingDialog = new RatingDialog();
                     ratingDialog.setArguments(arguments);
                     ratingDialog.show(getSupportFragmentManager(), Constants.RATING_FRAGMENT);
-                    ratingDialog.setOnRatesSendListener(onRatesSendListener);
 
                     return true;
                 }
@@ -145,10 +145,11 @@ public class CompanyActivity extends AppCompatActivity implements NetworkStateRe
         super.onPause();
     }
 
-    final RatingDialog.OnRatesSendListener onRatesSendListener = new RatingDialog.OnRatesSendListener() {
-        @Override
-        public void onRatesSend(float rating) {
-            barRateCompany.setRating(rating);
+    @Override
+    public void onRatesSend(float rating) {
+        if (barRateCompany == null) {
+            return;
         }
-    };
+        barRateCompany.setRating(rating);
+    }
 }

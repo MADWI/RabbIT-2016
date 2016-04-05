@@ -18,6 +18,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import mad.zut.edu.pl.rabbit_2016.activities.CompanyActivity;
 import mad.zut.edu.pl.rabbit_2016.api.RestClientManager;
 import mad.zut.edu.pl.rabbit_2016.model.CompanyPostData;
 import retrofit.Callback;
@@ -36,7 +37,6 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
     List<RatingBar> ratingBars;
 
     private int companyId;
-    private OnRatesSendListener onRatesSendListener;
     private float averageRate;
 
     @Nullable
@@ -80,7 +80,7 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
                     @Override
                     public void success(Response response, Response response2) {
                         dismiss();
-                        onRatesSendListener.onRatesSend(averageRate);
+                        ((CompanyActivity) getActivity()).onRatesSend(averageRate);
                         Toast.makeText(getContext(), R.string.send_success, Toast.LENGTH_SHORT).show();
                     }
 
@@ -124,10 +124,6 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
     private String getDeviceId() {
         return Settings.Secure.getString(getContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID);
-    }
-
-    public void setOnRatesSendListener(OnRatesSendListener onRatesSendListener) {
-        this.onRatesSendListener = onRatesSendListener;
     }
 
     public interface OnRatesSendListener {
