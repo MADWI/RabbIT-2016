@@ -12,7 +12,7 @@
 
     <string name="rate_company_string">Oceń firmę:</string>
     <string name="criterion_1_string">Kryterium 1:</string>
-    <string name="criterion_2_string">Krytetium 2:</string>
+    <string name="criterion_2_string">Kryterium 2:</string>
     <string name="criterion_3_string">Kryterium 3:</string>
 
     <string name="about_company_string">O firmie:</string>
@@ -34,6 +34,7 @@
     <string name="settings">Ustawienia</string>
     <string name="rate">Oceń</string>
     <string name="send_ratings">Send ratings</string>
-    <string name="send_success">Send success</string>
-    <string name="send_error">Send error</string>
+    <string name="send_success">Wysłano pomyślnie</string>
+    <string name="send_error">Sprawdź połączenie z internetem</string>
+    <string name="criterion_error">Musisz podać wszystkie kryteria</string>
 </resources>

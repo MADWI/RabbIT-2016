@@ -109,6 +109,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/bar_rate_company"
             android:isIndicator="true"
+            android:progressTint="@color/ratingColor"
             android:layout_below="@+id/text_rate_company"
             android:layout_alignLeft="@+id/text_rate_company"
             android:layout_alignStart="@+id/text_rate_company" />

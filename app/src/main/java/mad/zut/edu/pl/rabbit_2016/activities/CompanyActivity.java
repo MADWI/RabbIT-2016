@@ -106,6 +106,8 @@ public class CompanyActivity extends AppCompatActivity implements NetworkStateRe
                     RatingDialog ratingDialog = new RatingDialog();
                     ratingDialog.setArguments(arguments);
                     ratingDialog.show(getSupportFragmentManager(), Constants.RATING_FRAGMENT);
+                    ratingDialog.setOnRatesSendListener(onRatesSendListener);
+
                     return true;
                 }
 
@@ -142,4 +144,11 @@ public class CompanyActivity extends AppCompatActivity implements NetworkStateRe
         unregisterReceiver(networkStateReceiver);
         super.onPause();
     }
+
+    final RatingDialog.OnRatesSendListener onRatesSendListener = new RatingDialog.OnRatesSendListener() {
+        @Override
+        public void onRatesSend(float rating) {
+            barRateCompany.setRating(rating);
+        }
+    };
 }

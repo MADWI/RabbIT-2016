@@ -36,6 +36,8 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
     List<RatingBar> ratingBars;
 
     private int companyId;
+    private OnRatesSendListener onRatesSendListener;
+    private float averageRate;
 
     @Nullable
     @Override
@@ -43,6 +45,12 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
         View view = inflater.inflate(R.layout.rating_dialog, container, false);
         ButterKnife.bind(this, view);
 
+        initView();
+
+        return view;
+    }
+
+    private void initView() {
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
         Bundle arguments = getArguments();
@@ -50,11 +58,7 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
         companyId = arguments.getInt(Constants.COMPANY_ID_KEY);
 
         companyNameView.setText(companyName);
-
-        return view;
     }
-
-
 
     @OnClick(R.id.btn_send_ratings)
     public void onClick() {
@@ -62,20 +66,22 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
             byte[] opinions = new byte[ratingBars.size()];
             for (int i = 0; i < ratingBars.size(); i++) {
                 opinions[i] = (byte) ratingBars.get(i).getRating();
+                averageRate += opinions[i];
             }
+            averageRate /= ratingBars.size();
 
-            sendCompanyOpinions(opinions);
+            sendCompanyOpinions(opinions, averageRate);
         }
     }
 
-    private void sendCompanyOpinions(byte[] opinions) {
+    private void sendCompanyOpinions(byte[] opinions, final float averageRate) {
         RestClientManager.sendCompanyOpinions(
                 new CompanyPostData(companyId, opinions, getDeviceId(), getMd5Hash()), new Callback<Response>() {
                     @Override
                     public void success(Response response, Response response2) {
                         dismiss();
+                        onRatesSendListener.onRatesSend(averageRate);
                         Toast.makeText(getContext(), R.string.send_success, Toast.LENGTH_SHORT).show();
-
                     }
 
                     @Override
@@ -88,7 +94,7 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
     private boolean isAllRatesSet() {
         for (RatingBar ratingBar : ratingBars) {
             if (ratingBar.getRating() < 1) {
-                Toast.makeText(getContext(), "You must set all criterion", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.criterion_error, Toast.LENGTH_SHORT).show();
                 return false;
             }
         }
@@ -116,6 +122,15 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
     }
 
     private String getDeviceId() {
-        return Settings.Secure.getString(getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        return Settings.Secure.getString(getContext().getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+    }
+
+    public void setOnRatesSendListener(OnRatesSendListener onRatesSendListener) {
+        this.onRatesSendListener = onRatesSendListener;
+    }
+
+    public interface OnRatesSendListener {
+        void onRatesSend(float rating);
     }
 }
