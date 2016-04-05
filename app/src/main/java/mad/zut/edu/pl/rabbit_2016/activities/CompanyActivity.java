@@ -5,8 +5,10 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -16,7 +18,6 @@ import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import mad.zut.edu.pl.rabbit_2016.Constants;
 import mad.zut.edu.pl.rabbit_2016.R;
 import mad.zut.edu.pl.rabbit_2016.RatingDialog;
@@ -46,6 +47,9 @@ public class CompanyActivity extends AppCompatActivity implements NetworkStateRe
     @Bind(R.id.layout_id)
     ScrollView scrollView;
 
+    @Bind(R.id.bar_rate_company)
+    RatingBar barRateCompany;
+
     private Company company;
     private NetworkStateReceiver networkStateReceiver;
     private Snackbar snackbar;
@@ -74,6 +78,7 @@ public class CompanyActivity extends AppCompatActivity implements NetworkStateRe
 
         company = (Company) getIntent().getExtras().getSerializable("item");
         setData();
+        initBarRate();
     }
 
     private void setData(){
@@ -89,15 +94,24 @@ public class CompanyActivity extends AppCompatActivity implements NetworkStateRe
                 .into(companyImageView);
     }
 
-    @OnClick(R.id.btn_rate_company)
-    public void onClick(View v) {
-        Bundle arguments = new Bundle();
-        arguments.putString(Constants.COMPANY_NAME_KEY, company.getName());
-        arguments.putInt(Constants.COMPANY_ID_KEY, Integer.valueOf(company.getId()));
+    private void initBarRate() {
+        barRateCompany.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    Bundle arguments = new Bundle();
+                    arguments.putString(Constants.COMPANY_NAME_KEY, company.getName());
+                    arguments.putInt(Constants.COMPANY_ID_KEY, Integer.valueOf(company.getId()));
 
-        RatingDialog ratingDialog = new RatingDialog();
-        ratingDialog.setArguments(arguments);
-        ratingDialog.show(getSupportFragmentManager(), Constants.RATING_FRAGMENT);
+                    RatingDialog ratingDialog = new RatingDialog();
+                    ratingDialog.setArguments(arguments);
+                    ratingDialog.show(getSupportFragmentManager(), Constants.RATING_FRAGMENT);
+                    return true;
+                }
+
+                return false;
+            }
+        });
     }
 
     @Override

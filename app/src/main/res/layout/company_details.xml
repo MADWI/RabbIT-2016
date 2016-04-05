@@ -48,7 +48,7 @@
                 android:text="@string/website_string"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:layout_below="@+id/company_name_view"
-                android:id="@+id/text_website"/>
+                android:id="@+id/text_website" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -104,13 +104,14 @@
             android:layout_marginTop="@dimen/default_margin"
             android:text="@string/rate_company_string" />
 
-        <Button
+        <RatingBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_rate_company"
-            android:text="@string/rate"
+            android:id="@+id/bar_rate_company"
+            android:isIndicator="true"
             android:layout_below="@+id/text_rate_company"
-            android:layout_centerHorizontal="true" />
+            android:layout_alignLeft="@+id/text_rate_company"
+            android:layout_alignStart="@+id/text_rate_company" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -121,7 +122,7 @@
             android:layout_marginTop="@dimen/default_margin"
             android:layout_alignLeft="@+id/company_room_view"
             android:layout_alignStart="@+id/company_room_view"
-            android:layout_below="@+id/btn_rate_company" />
+            android:layout_below="@+id/bar_rate_company" />
 
         <TextView
             android:layout_width="match_parent"
