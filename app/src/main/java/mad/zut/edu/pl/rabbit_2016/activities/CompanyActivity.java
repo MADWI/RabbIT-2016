@@ -62,7 +62,7 @@ public class CompanyActivity extends AppCompatActivity implements NetworkStateRe
                 .setAction(getResources().getString(R.string.settings), new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
+                        startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
                     }
                 });
 
