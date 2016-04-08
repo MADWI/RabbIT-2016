@@ -1,5 +1,7 @@
 package mad.zut.edu.pl.rabbit_2016;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
@@ -18,7 +20,6 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import mad.zut.edu.pl.rabbit_2016.activities.CompanyActivity;
 import mad.zut.edu.pl.rabbit_2016.api.RestClientManager;
 import mad.zut.edu.pl.rabbit_2016.model.CompanyPostData;
 import retrofit.Callback;
@@ -36,8 +37,11 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
     @Bind({R.id.rating_bar_criterion1, R.id.rating_bar_criterion2, R.id.rating_bar_criterion3})
     List<RatingBar> ratingBars;
 
+    private static final String PREFERENCES = "PREFERENCES";
+    private static final String CRITERION = "criterion";
     private int companyId;
     private float averageRate;
+    private SharedPreferences sharedPreferences;
 
     @Nullable
     @Override
@@ -58,31 +62,46 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
         companyId = arguments.getInt(Constants.COMPANY_ID_KEY);
 
         companyNameView.setText(companyName);
+
+        sharedPreferences = getContext().getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
+
+        for (int i = 0; i < ratingBars.size(); i++) {
+            float rating = sharedPreferences.getInt(companyId + CRITERION + "1", 0);
+            ratingBars.get(i).setRating(rating);
+        }
     }
 
     @OnClick(R.id.btn_send_ratings)
     public void onClick() {
         if (isAllRatesSet()) {
-            byte[] opinions = new byte[ratingBars.size()];
+            byte[] ratings = new byte[ratingBars.size()];
             for (int i = 0; i < ratingBars.size(); i++) {
-                opinions[i] = (byte) ratingBars.get(i).getRating();
-                averageRate += opinions[i];
+                ratings[i] = (byte) ratingBars.get(i).getRating();
+                averageRate += ratings[i];
             }
             averageRate /= ratingBars.size();
 
-            sendCompanyOpinions(opinions, averageRate);
+            sendCompanyOpinions(ratings);
         }
     }
 
-    private void sendCompanyOpinions(byte[] opinions, final float averageRate) {
+    private void sendCompanyOpinions(final byte[] opinions) {
         RestClientManager.sendCompanyOpinions(
-                new CompanyPostData(companyId, opinions, getDeviceId(), getMd5Hash()), new Callback<Response>() {
+                new CompanyPostData(companyId, opinions, getDeviceId(), getHash()), new Callback<Response>() {
                     @Override
                     public void success(Response response, Response response2) {
                         dismiss();
                         if (getActivity() instanceof OnRatesSendListener) {
-                            ((OnRatesSendListener)getActivity()).onRatesSend(averageRate);
+                            ((OnRatesSendListener)getActivity()).onRatesSend(opinions);
                         }
+
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                        for (int i = 0; i < opinions.length; i++) {
+                            editor.putInt(companyId + CRITERION + i, opinions[i]);
+                        }
+                        editor.apply();
+
                         Toast.makeText(getContext(), R.string.send_success, Toast.LENGTH_SHORT).show();
                     }
 
@@ -104,7 +123,7 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
     }
 
     @Nullable
-    private String getMd5Hash() {
+    private String getHash() {
         String key = Constants.MD5_KEY + getDeviceId();
         StringBuilder digest = new StringBuilder();
         byte[] digestBytes;
@@ -129,6 +148,6 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
     }
 
     public interface OnRatesSendListener {
-        void onRatesSend(float rating);
+        void onRatesSend(byte[] ratings);
     }
 }

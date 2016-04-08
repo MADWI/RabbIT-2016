@@ -33,7 +33,7 @@
     <string name="no_internet">Brak połączenia z internetem</string>
     <string name="settings">Ustawienia</string>
     <string name="rate">Oceń</string>
-    <string name="send_ratings">Send ratings</string>
+    <string name="send_ratings">Wyślij oceny</string>
     <string name="send_success">Wysłano pomyślnie</string>
     <string name="send_error">Sprawdź połączenie z internetem</string>
     <string name="criterion_error">Musisz podać wszystkie kryteria</string>

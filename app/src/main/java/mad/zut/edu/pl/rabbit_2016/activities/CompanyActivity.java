@@ -146,10 +146,17 @@ public class CompanyActivity extends AppCompatActivity
     }
 
     @Override
-    public void onRatesSend(float rating) {
+    public void onRatesSend(byte[] ratings) {
         if (barRateCompany == null) {
             return;
         }
-        barRateCompany.setRating(rating);
+
+        float average = -1;
+        for (int i = 0; i > ratings.length; i++) {
+            average += ratings[i];
+        }
+        average /= ratings.length;
+
+        barRateCompany.setRating(average);
     }
 }
