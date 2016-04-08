@@ -1,7 +1,9 @@
 package mad.zut.edu.pl.rabbit_2016.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -62,27 +64,20 @@ public class CompanyActivity extends AppCompatActivity
         ButterKnife.bind(this);
         overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out);
 
-        snackbar = Snackbar
-                .make(scrollView, getResources().getString(R.string.no_internet), Snackbar.LENGTH_INDEFINITE)
-                .setAction(getResources().getString(R.string.settings), new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
-                    }
-                });
-
-        networkStateReceiver = new NetworkStateReceiver();
-        networkStateReceiver.addListener(this);
-
+        company = (Company) getIntent().getExtras().getSerializable("item");
         SwipeBack.attach(this, Position.LEFT)
                 .setSwipeBackView(R.layout.swipeback_default);
 
-        company = (Company) getIntent().getExtras().getSerializable("item");
+
+        initSnackBar();
+        initNetworkReceiver();
+        initRatingDialog();
         setData();
-        initBarRate();
     }
 
-    private void setData(){
+    private void setData() {
+        readSavedData();
+
         companyNameView.setText(company.getName());
         companyWebsiteView.setText(company.getWebsiteUrl());
         companyRoomView.setText(company.getRoom());
@@ -95,7 +90,17 @@ public class CompanyActivity extends AppCompatActivity
                 .into(companyImageView);
     }
 
-    private void initBarRate() {
+
+    private void readSavedData() {
+        SharedPreferences sharedPreferences = getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
+        float averageRate = sharedPreferences.getFloat(company.getId() + Constants.AVERAGE, 0);
+
+        if (barRateCompany != null) {
+            barRateCompany.setRating(averageRate);
+        }
+    }
+
+    private void initRatingDialog() {
         barRateCompany.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -114,6 +119,22 @@ public class CompanyActivity extends AppCompatActivity
                 return false;
             }
         });
+    }
+
+    private void initSnackBar() {
+        snackbar = Snackbar
+                .make(scrollView, getResources().getString(R.string.no_internet), Snackbar.LENGTH_INDEFINITE)
+                .setAction(getResources().getString(R.string.settings), new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
+                    }
+                });
+    }
+
+    private void initNetworkReceiver() {
+        networkStateReceiver = new NetworkStateReceiver();
+        networkStateReceiver.addListener(this);
     }
 
     @Override
@@ -146,17 +167,11 @@ public class CompanyActivity extends AppCompatActivity
     }
 
     @Override
-    public void onRatesSend(byte[] ratings) {
+    public void onRatesSend(float averageRate) {
         if (barRateCompany == null) {
             return;
         }
 
-        float average = -1;
-        for (int i = 0; i > ratings.length; i++) {
-            average += ratings[i];
-        }
-        average /= ratings.length;
-
-        barRateCompany.setRating(average);
+        barRateCompany.setRating(averageRate);
     }
 }

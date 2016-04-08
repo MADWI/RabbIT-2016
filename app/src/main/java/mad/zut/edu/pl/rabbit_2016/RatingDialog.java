@@ -37,8 +37,6 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
     @Bind({R.id.rating_bar_criterion1, R.id.rating_bar_criterion2, R.id.rating_bar_criterion3})
     List<RatingBar> ratingBars;
 
-    private static final String PREFERENCES = "PREFERENCES";
-    private static final String CRITERION = "criterion";
     private int companyId;
     private float averageRate;
     private SharedPreferences sharedPreferences;
@@ -57,16 +55,11 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
     private void initView() {
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
-        Bundle arguments = getArguments();
-        String companyName = arguments.getString(Constants.COMPANY_NAME_KEY);
-        companyId = arguments.getInt(Constants.COMPANY_ID_KEY);
+        initCompanyId();
 
-        companyNameView.setText(companyName);
-
-        sharedPreferences = getContext().getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
-
+        sharedPreferences = getContext().getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
         for (int i = 0; i < ratingBars.size(); i++) {
-            float rating = sharedPreferences.getInt(companyId + CRITERION + "1", 0);
+            float rating = sharedPreferences.getInt(companyId + Constants.CRITERION + i, 0);
             ratingBars.get(i).setRating(rating);
         }
     }
@@ -74,33 +67,31 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
     @OnClick(R.id.btn_send_ratings)
     public void onClick() {
         if (isAllRatesSet()) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
             byte[] ratings = new byte[ratingBars.size()];
+
             for (int i = 0; i < ratingBars.size(); i++) {
                 ratings[i] = (byte) ratingBars.get(i).getRating();
                 averageRate += ratings[i];
+                editor.putInt(companyId + Constants.CRITERION + i, ratings[i]);
             }
             averageRate /= ratingBars.size();
+            editor.putFloat(companyId + Constants.AVERAGE, averageRate);
+            editor.apply();
 
             sendCompanyOpinions(ratings);
         }
     }
 
-    private void sendCompanyOpinions(final byte[] opinions) {
+    private void sendCompanyOpinions(final byte[] ratings) {
         RestClientManager.sendCompanyOpinions(
-                new CompanyPostData(companyId, opinions, getDeviceId(), getHash()), new Callback<Response>() {
+                new CompanyPostData(companyId, ratings, getDeviceId(), getHash()), new Callback<Response>() {
                     @Override
                     public void success(Response response, Response response2) {
                         dismiss();
                         if (getActivity() instanceof OnRatesSendListener) {
-                            ((OnRatesSendListener)getActivity()).onRatesSend(opinions);
+                            ((OnRatesSendListener)getActivity()).onRatesSend(averageRate);
                         }
-
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                        for (int i = 0; i < opinions.length; i++) {
-                            editor.putInt(companyId + CRITERION + i, opinions[i]);
-                        }
-                        editor.apply();
 
                         Toast.makeText(getContext(), R.string.send_success, Toast.LENGTH_SHORT).show();
                     }
@@ -110,6 +101,13 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
                         Toast.makeText(getContext(), R.string.send_error, Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    private void initCompanyId() {
+        Bundle arguments = getArguments();
+        String companyName = arguments.getString(Constants.COMPANY_NAME_KEY);
+        companyId = arguments.getInt(Constants.COMPANY_ID_KEY);
+        companyNameView.setText(companyName);
     }
 
     private boolean isAllRatesSet() {
@@ -148,6 +146,6 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
     }
 
     public interface OnRatesSendListener {
-        void onRatesSend(byte[] ratings);
+        void onRatesSend(float averageRate);
     }
 }

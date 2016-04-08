@@ -12,4 +12,7 @@ public class Constants {
     public static final String COMPANY_NAME_KEY = "company_name";
     public static final String COMPANY_ID_KEY = "company_id";
     public static final String RATING_FRAGMENT = "Rating fragment";
+    public static final String AVERAGE = "average";
+    public static final String PREFERENCES = "company_rates";
+    public static final String CRITERION = "criterion";
 }

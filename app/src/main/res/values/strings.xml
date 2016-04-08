@@ -36,5 +36,5 @@
     <string name="send_ratings">Wyślij oceny</string>
     <string name="send_success">Wysłano pomyślnie</string>
     <string name="send_error">Sprawdź połączenie z internetem</string>
-    <string name="criterion_error">Musisz podać wszystkie kryteria</string>
+    <string name="criterion_error">Musisz ocenić wszystkie kryteria</string>
 </resources>
