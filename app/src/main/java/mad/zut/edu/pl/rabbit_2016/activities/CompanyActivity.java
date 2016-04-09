@@ -92,8 +92,8 @@ public class CompanyActivity extends AppCompatActivity
 
 
     private void readSavedData() {
-        SharedPreferences sharedPreferences = getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
-        float averageRate = sharedPreferences.getFloat(company.getId() + Constants.AVERAGE, 0);
+        SharedPreferences sharedPreferences = getSharedPreferences(Constants.PREFERENCES_RATINGS, Context.MODE_PRIVATE);
+        float averageRate = sharedPreferences.getFloat(company.getId() + Constants.AVERAGE_KEY, 0);
 
         if (barRateCompany != null) {
             barRateCompany.setRating(averageRate);

@@ -57,9 +57,9 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
 
         initCompanyId();
 
-        sharedPreferences = getContext().getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
+        sharedPreferences = getContext().getSharedPreferences(Constants.PREFERENCES_RATINGS, Context.MODE_PRIVATE);
         for (int i = 0; i < ratingBars.size(); i++) {
-            float rating = sharedPreferences.getInt(companyId + Constants.CRITERION + i, 0);
+            float rating = sharedPreferences.getInt(companyId + Constants.CRITERION_KEY + i, 0);
             ratingBars.get(i).setRating(rating);
         }
     }
@@ -73,10 +73,10 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
             for (int i = 0; i < ratingBars.size(); i++) {
                 ratings[i] = (byte) ratingBars.get(i).getRating();
                 averageRate += ratings[i];
-                editor.putInt(companyId + Constants.CRITERION + i, ratings[i]);
+                editor.putInt(companyId + Constants.CRITERION_KEY + i, ratings[i]);
             }
             averageRate /= ratingBars.size();
-            editor.putFloat(companyId + Constants.AVERAGE, averageRate);
+            editor.putFloat(companyId + Constants.AVERAGE_KEY, averageRate);
             editor.apply();
 
             sendCompanyOpinions(ratings);
