@@ -1,5 +1,7 @@
 package mad.zut.edu.pl.rabbit_2016;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
@@ -36,6 +38,8 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
     List<RatingBar> ratingBars;
 
     private int companyId;
+    private float averageRate;
+    private SharedPreferences sharedPreferences;
 
     @Nullable
     @Override
@@ -43,39 +47,53 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
         View view = inflater.inflate(R.layout.rating_dialog, container, false);
         ButterKnife.bind(this, view);
 
-        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-
-        Bundle arguments = getArguments();
-        String companyName = arguments.getString(Constants.COMPANY_NAME_KEY);
-        companyId = arguments.getInt(Constants.COMPANY_ID_KEY);
-
-        companyNameView.setText(companyName);
+        initView();
 
         return view;
     }
 
+    private void initView() {
+        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
+        initCompanyId();
+
+        sharedPreferences = getContext().getSharedPreferences(Constants.PREFERENCES_RATINGS, Context.MODE_PRIVATE);
+        for (int i = 0; i < ratingBars.size(); i++) {
+            float rating = sharedPreferences.getInt(companyId + Constants.CRITERION_KEY + i, 0);
+            ratingBars.get(i).setRating(rating);
+        }
+    }
 
     @OnClick(R.id.btn_send_ratings)
     public void onClick() {
         if (isAllRatesSet()) {
-            byte[] opinions = new byte[ratingBars.size()];
-            for (int i = 0; i < ratingBars.size(); i++) {
-                opinions[i] = (byte) ratingBars.get(i).getRating();
-            }
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            byte[] ratings = new byte[ratingBars.size()];
 
-            sendCompanyOpinions(opinions);
+            for (int i = 0; i < ratingBars.size(); i++) {
+                ratings[i] = (byte) ratingBars.get(i).getRating();
+                averageRate += ratings[i];
+                editor.putInt(companyId + Constants.CRITERION_KEY + i, ratings[i]);
+            }
+            averageRate /= ratingBars.size();
+            editor.putFloat(companyId + Constants.AVERAGE_KEY, averageRate);
+            editor.apply();
+
+            sendCompanyOpinions(ratings);
         }
     }
 
-    private void sendCompanyOpinions(byte[] opinions) {
+    private void sendCompanyOpinions(final byte[] ratings) {
         RestClientManager.sendCompanyOpinions(
-                new CompanyPostData(companyId, opinions, getDeviceId(), getMd5Hash()), new Callback<Response>() {
+                new CompanyPostData(companyId, ratings, getDeviceId(), getHash()), new Callback<Response>() {
                     @Override
                     public void success(Response response, Response response2) {
                         dismiss();
-                        Toast.makeText(getContext(), R.string.send_success, Toast.LENGTH_SHORT).show();
+                        if (getActivity() instanceof OnRatesSendListener) {
+                            ((OnRatesSendListener)getActivity()).onRatesSend(averageRate);
+                        }
 
+                        Toast.makeText(getContext(), R.string.send_success, Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -85,10 +103,17 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
                 });
     }
 
+    private void initCompanyId() {
+        Bundle arguments = getArguments();
+        String companyName = arguments.getString(Constants.COMPANY_NAME_KEY);
+        companyId = arguments.getInt(Constants.COMPANY_ID_KEY);
+        companyNameView.setText(companyName);
+    }
+
     private boolean isAllRatesSet() {
         for (RatingBar ratingBar : ratingBars) {
             if (ratingBar.getRating() < 1) {
-                Toast.makeText(getContext(), "You must set all criterion", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.criterion_error, Toast.LENGTH_SHORT).show();
                 return false;
             }
         }
@@ -96,7 +121,7 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
     }
 
     @Nullable
-    private String getMd5Hash() {
+    private String getHash() {
         String key = Constants.MD5_KEY + getDeviceId();
         StringBuilder digest = new StringBuilder();
         byte[] digestBytes;
@@ -116,6 +141,11 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
     }
 
     private String getDeviceId() {
-        return Settings.Secure.getString(getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        return Settings.Secure.getString(getContext().getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+    }
+
+    public interface OnRatesSendListener {
+        void onRatesSend(float averageRate);
     }
 }

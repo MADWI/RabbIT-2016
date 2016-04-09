@@ -11,5 +11,8 @@ public class Constants {
     public static final String MD5_KEY = "opinion_rabbit_key";
     public static final String COMPANY_NAME_KEY = "company_name";
     public static final String COMPANY_ID_KEY = "company_id";
-    public static final String RATING_FRAGMENT = "Rating fragment";
+    public static final String RATING_FRAGMENT = "rating_fragment";
+    public static final String PREFERENCES_RATINGS = "company_rates";
+    public static final String AVERAGE_KEY = "average";
+    public static final String CRITERION_KEY = "criterion";
 }
