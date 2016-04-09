@@ -127,7 +127,7 @@ public class CompanyActivity extends AppCompatActivity
                 .setAction(getResources().getString(R.string.settings), new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
+                        startActivity(new Intent(android.provider.Settings.ACTION_SETTINGS));
                     }
                 });
     }
