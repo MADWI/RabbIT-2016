@@ -107,6 +107,7 @@ public class EventsFragment extends Fragment implements NetworkStateReceiver.Net
     @Override
     public void onPause() {
         super.onPause();
+        snackbar.dismiss();
         getActivity().unregisterReceiver(networkStateReceiver);
     }
 }
