@@ -45,9 +45,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      */
     private static final DrawerFragmentItem[] DRAWER_FRAGMENTS = new DrawerFragmentItem[]{
             new DrawerFragmentItem(R.id.timetable, TAB_PRESENTATIONS, EventsFragment.class, PlaceholderFragment.makeArguments("Prezentacje")),
-            new DrawerFragmentItem(R.id.stands, TAB_STANDS, CompaniesFragment.class, PlaceholderFragment.makeArguments("Stoiska")),
+            new DrawerFragmentItem(R.id.stands, TAB_STANDS, CompaniesFragment.class, PlaceholderFragment.makeArguments("Firmy")),
             new DrawerFragmentItem(R.id.special_guest, TAB_SPECIAL_GUEST, GuestFragment.class, PlaceholderFragment.makeArguments("Gość specjalny")),
-            new DrawerFragmentItem(R.id.about_us, TAB_ABOUT_US, AuthorsFragment.class, PlaceholderFragment.makeArguments("O nas"))
+            new DrawerFragmentItem(R.id.about_us, TAB_ABOUT_US, AuthorsFragment.class, PlaceholderFragment.makeArguments("Autorzy"))
     };
 
     /**
