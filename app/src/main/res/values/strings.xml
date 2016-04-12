@@ -52,4 +52,11 @@
     <string name="send_success">Wysłano pomyślnie</string>
     <string name="send_error">Sprawdź połączenie z internetem</string>
     <string name="criterion_error">Musisz ocenić wszystkie kryteria</string>
+
+    <string name="special_guest_name">Prof. Andy Hopper</string>
+    <string name="special_guest_topic_title">Wykład pt. :</string>
+    <string name="special_guest_topic">Perspektywy dla innowacji</string>
+    <string name="special_guest_room">Centrum Nanotechnologii ZUT\nprzy al. Piastów 45</string>
+    <string name="special_guest_description">Prof. Andy Hopper – dyrektor Wydziału Informatyki Uniwersytetu w Cambridge (The Computer Laboratory, University of Cambridge).\n\nTen znakomity naukowiec polskiego pochodzenia (urodzony w Warszawie) jest twórcą takich najwyższej światowej klasy wynalazków jak minikomputer Raspberry PI, procesory ARM, obecne w każdym smartfonie, protokół VNC i wiele innych. Prof. Andy Hopper figuruje na liście najbardziej wpływowych współczesnych Brytyjczyków (100 most influential Britons of the modern age) tygodnika Sunday Times.</string>
+    <string name="special_guest_time">21 kwietnia 2016 roku\ngodz. 10:00 - 12:00</string>
 </resources>

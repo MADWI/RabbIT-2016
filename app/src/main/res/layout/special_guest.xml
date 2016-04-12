@@ -32,13 +32,13 @@
             android:layout_below="@+id/guest_image_view"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:text="Prof. Andy Hopper" />
+            android:text="@string/special_guest_name" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Wykład pt. :"
+            android:text="@string/special_guest_topic_title"
             android:id="@+id/topic_title"
             android:layout_below="@+id/guest_name_view"
             android:layout_alignLeft="@+id/guest_name_view"
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:paddingRight="@dimen/default_padding"
-            android:text="Perspektywy dla innowacji"
+            android:text="@string/special_guest_topic"
             android:id="@+id/topic"
             android:textStyle="bold"
             android:textColor="@color/textDefault"
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:paddingRight="@dimen/default_padding"
-            android:text="Centrum Nanotechnologii ZUT\nprzy al. Piastów 45"
+            android:text="@string/special_guest_room"
             android:id="@+id/guest_room_view"
             android:textStyle="bold"
             android:textColor="@color/textDefault"
@@ -110,7 +110,7 @@
             android:layout_alignStart="@+id/textView6"
             android:layout_alignRight="@+id/guest_room_view"
             android:layout_alignEnd="@+id/guest_room_view"
-            android:text="21 kwietnia 2016 roku\ngodz. 10:00 - 12:00" />
+            android:text="@string/special_guest_time" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -128,7 +128,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:paddingRight="@dimen/default_padding"
-            android:text="Prof. Andy Hopper – dyrektor Wydziału Informatyki Uniwersytetu w Cambridge (The Computer Laboratory, University of Cambridge).\n\nTen znakomity naukowiec polskiego pochodzenia (urodzony w Warszawie) jest twórcą takich najwyższej światowej klasy wynalazków jak minikomputer Raspberry PI, procesory ARM, obecne w każdym smartfonie, protokół VNC i wiele innych. Prof. Andy Hopper figuruje na liście najbardziej wpływowych współczesnych Brytyjczyków (100 most influential Britons of the modern age) tygodnika Sunday Times."
+            android:text="@string/special_guest_description"
             android:id="@+id/guest_desc_view"
             android:layout_below="@+id/text_desc"
             android:textColor="@color/textDefault"
