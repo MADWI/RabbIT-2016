@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,8 @@ import mad.zut.edu.pl.rabbit_2016.model.CompanyPostData;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
+import retrofit.client.UrlConnectionClient;
+import retrofit.mime.TypedByteArray;
 
 /**
  * Created by Marek Macko on 01.04.2016.
@@ -67,28 +70,45 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
     @OnClick(R.id.btn_send_ratings)
     public void onClick() {
         if (isAllRatesSet()) {
-            SharedPreferences.Editor editor = sharedPreferences.edit();
             byte[] ratings = new byte[ratingBars.size()];
 
             for (int i = 0; i < ratingBars.size(); i++) {
                 ratings[i] = (byte) ratingBars.get(i).getRating();
                 averageRate += ratings[i];
-                editor.putInt(companyId + Constants.CRITERION_KEY + i, ratings[i]);
             }
             averageRate /= ratingBars.size();
-            editor.putFloat(companyId + Constants.AVERAGE_KEY, averageRate);
-            editor.apply();
 
             sendCompanyOpinions(ratings);
         }
     }
 
-    private void sendCompanyOpinions(final byte[] ratings) {
+    private void saveRatings(final byte[] ratings) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        averageRate = 0;
+        for (int i = 0; i < ratingBars.size(); i++) {
+            byte rating = ratings[i];
+            editor.putInt(companyId + Constants.CRITERION_KEY + i, rating);
+            averageRate += rating;
+        }
+
+        averageRate /= ratingBars.size();
+        editor.putFloat(companyId + Constants.AVERAGE_KEY, averageRate);
+        editor.apply();
+    }
+
+    private void sendCompanyOpinions(final byte[] companyRatings) {
+        CompanyPostData.Ratings ratings = new CompanyPostData.Ratings(
+                companyRatings[0],
+                companyRatings[1],
+                companyRatings[2]
+        );
         RestClientManager.sendCompanyOpinions(
                 new CompanyPostData(companyId, ratings, getDeviceId(), getHash()), new Callback<Response>() {
                     @Override
                     public void success(Response response, Response response2) {
                         dismiss();
+                        saveRatings(companyRatings);
                         if (getActivity() instanceof OnRatesSendListener) {
                             ((OnRatesSendListener)getActivity()).onRatesSend(averageRate);
                         }
