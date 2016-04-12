@@ -165,7 +165,7 @@
             android:layout_alignStart="@+id/textView5" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/about_us_font_size"
             android:fontFamily="sans-serif-light"
@@ -194,7 +194,7 @@
             android:layout_marginTop="@dimen/default_margin" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/about_us_font_size"
             android:fontFamily="sans-serif-light"
@@ -210,27 +210,19 @@
             android:layout_alignStart="@+id/textView9" />
 
         <TextView
-            android:id="@+id/legalNoticesTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView10"
-            android:textStyle="bold"
-            android:text="@string/legal_notices_title"
-            android:textSize="14sp"
-            android:layout_marginLeft="8dp" />
-
-        <TextView
             android:id="@+id/legalNotices"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/legalNoticesTitle"
+            android:layout_below="@+id/textView10"
             android:layout_gravity="center_vertical|right"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginTop="8dp"
             android:text="@string/legal_notices"
             android:textSize="12sp"
-            android:layout_marginRight="8dp"
-            android:layout_marginLeft="8dp" />
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/default_margin"/>
 
     </RelativeLayout>
 </ScrollView>
