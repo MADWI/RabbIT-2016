@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">RabbIT-2016</string>
+    <string name="app_name">RabbIT 2016</string>
 
     <string name="nav_timetable">Prezentacje</string>
-    <string name="nav_stands">Stoiska</string>
+    <string name="nav_stands">Firmy</string>
     <string name="nav_special_guest">Gość specjalny</string>
-    <string name="nav_about_us">O nas</string>
+    <string name="nav_about_us">Autorzy</string>
 
     <string name="navigation_drawer_toggle">Menu</string>
     <string name="website_string">Strona internetowa:</string>
