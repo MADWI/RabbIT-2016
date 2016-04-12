@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,8 +25,6 @@ import mad.zut.edu.pl.rabbit_2016.model.CompanyPostData;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-import retrofit.client.UrlConnectionClient;
-import retrofit.mime.TypedByteArray;
 
 /**
  * Created by Marek Macko on 01.04.2016.

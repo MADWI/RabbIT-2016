@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static final String TAB_STANDS = "sta";
     public static final String TAB_SPECIAL_GUEST = "sgu";
     public static final String TAB_ABOUT_US = "abo";
-    private DrawerLayout drawer;
 
     /**
      * Fragments selectable from drawer
@@ -86,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_toggle, R.string.navigation_drawer_toggle);
         drawer.addDrawerListener(toggle);

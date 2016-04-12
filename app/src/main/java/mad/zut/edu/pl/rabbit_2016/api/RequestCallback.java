@@ -9,7 +9,7 @@ import retrofit.client.Response;
  */
 public class RequestCallback<T> implements Callback<T> {
 
-    protected RequestListener<T> listener;
+    protected final RequestListener<T> listener;
 
     public RequestCallback(RequestListener<T> listener){
         this.listener = listener;

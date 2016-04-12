@@ -47,11 +47,10 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsHold
 
     @Override
     public int getItemCount() {
-        try{
+        if (event != null) {
             return event.size();
-        }catch (NullPointerException e){
-
         }
+
         return 0;
     }
 
