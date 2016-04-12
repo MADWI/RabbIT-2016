@@ -121,6 +121,7 @@ public class CompaniesFragment extends Fragment implements CompaniesAdapter.Clic
     @Override
     public void onPause() {
         super.onPause();
+        snackbar.dismiss();
         getActivity().unregisterReceiver(networkStateReceiver);
     }
 }
