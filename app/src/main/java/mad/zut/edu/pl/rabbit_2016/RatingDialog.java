@@ -20,9 +20,10 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import mad.zut.edu.pl.rabbit_2016.api.RequestCallback;
+import mad.zut.edu.pl.rabbit_2016.api.RequestListener;
 import mad.zut.edu.pl.rabbit_2016.api.RestClientManager;
 import mad.zut.edu.pl.rabbit_2016.model.CompanyPostData;
-import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
@@ -99,9 +100,10 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
                 companyRatings[0]
         );
         RestClientManager.sendCompanyOpinions(
-                new CompanyPostData(companyId, ratings, getDeviceId(), getHash()), new Callback<Response>() {
+                new CompanyPostData(companyId, ratings, getDeviceId(), getHash()),
+                new RequestCallback<>(new RequestListener<Response>() {
                     @Override
-                    public void success(Response response, Response response2) {
+                    public void onSuccess(Response response) {
                         dismiss();
                         saveRatings(companyRatings);
                         if (getActivity() instanceof OnRatesSendListener) {
@@ -112,10 +114,10 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
                     }
 
                     @Override
-                    public void failure(RetrofitError error) {
+                    public void onFailure(RetrofitError error) {
                         Toast.makeText(getContext(), R.string.send_error, Toast.LENGTH_SHORT).show();
                     }
-                });
+                }));
     }
 
     private void initCompanyId() {
