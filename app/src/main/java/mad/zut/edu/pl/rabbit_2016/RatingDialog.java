@@ -34,7 +34,7 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
     @Bind(R.id.rating_company_name_view)
     TextView companyNameView;
 
-    @Bind({R.id.rating_bar_criterion1, R.id.rating_bar_criterion2, R.id.rating_bar_criterion3})
+    @Bind({R.id.rating_bar_criterion1})
     List<RatingBar> ratingBars;
 
     private int companyId;
@@ -96,9 +96,7 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
 
     private void sendCompanyOpinions(final byte[] companyRatings) {
         CompanyPostData.Ratings ratings = new CompanyPostData.Ratings(
-                companyRatings[0],
-                companyRatings[1],
-                companyRatings[2]
+                companyRatings[0]
         );
         RestClientManager.sendCompanyOpinions(
                 new CompanyPostData(companyId, ratings, getDeviceId(), getHash()), new Callback<Response>() {
