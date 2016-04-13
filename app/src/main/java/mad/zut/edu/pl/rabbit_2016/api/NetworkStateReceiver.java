@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class NetworkStateReceiver extends BroadcastReceiver {
 
-    protected List<NetworkStateReceiverListener> listeners;
+    protected final List<NetworkStateReceiverListener> listeners;
     protected Boolean connected;
 
     public NetworkStateReceiver() {

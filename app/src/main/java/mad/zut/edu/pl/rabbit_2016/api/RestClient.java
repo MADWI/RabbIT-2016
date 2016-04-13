@@ -7,7 +7,7 @@ import retrofit.RestAdapter;
  * Created by Bartosz Kozajda on 24.03.2016.
  */
 public class RestClient {
-    private RestInterface restInterface;
+    private final RestInterface restInterface;
 
     public RestClient(){
         RestAdapter restAdapter = new RestAdapter.Builder()

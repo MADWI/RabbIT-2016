@@ -44,11 +44,10 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Comp
 
     @Override
     public int getItemCount() {
-        try{
+        if (company != null) {
             return company.size();
-        }catch (NullPointerException e){
-
         }
+
         return 0;
     }
 

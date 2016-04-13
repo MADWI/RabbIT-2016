@@ -12,7 +12,7 @@ import retrofit.client.Response;
  * Created by Bartosz Kozajda on 24.03.2016.
  */
 public class RestClientManager {
-    public static RestClient client = new RestClient();
+    public static final RestClient client = new RestClient();
 
     public static RestInterface getRestApi(){
         return client.getService();

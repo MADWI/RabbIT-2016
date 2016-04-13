@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static final String TAB_STANDS = "sta";
     public static final String TAB_SPECIAL_GUEST = "sgu";
     public static final String TAB_ABOUT_US = "abo";
-    private DrawerLayout drawer;
 
     /**
      * Fragments selectable from drawer
@@ -45,9 +44,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      */
     private static final DrawerFragmentItem[] DRAWER_FRAGMENTS = new DrawerFragmentItem[]{
             new DrawerFragmentItem(R.id.timetable, TAB_PRESENTATIONS, EventsFragment.class, PlaceholderFragment.makeArguments("Prezentacje")),
-            new DrawerFragmentItem(R.id.stands, TAB_STANDS, CompaniesFragment.class, PlaceholderFragment.makeArguments("Stoiska")),
+            new DrawerFragmentItem(R.id.stands, TAB_STANDS, CompaniesFragment.class, PlaceholderFragment.makeArguments("Firmy")),
             new DrawerFragmentItem(R.id.special_guest, TAB_SPECIAL_GUEST, GuestFragment.class, PlaceholderFragment.makeArguments("Gość specjalny")),
-            new DrawerFragmentItem(R.id.about_us, TAB_ABOUT_US, AuthorsFragment.class, PlaceholderFragment.makeArguments("O nas"))
+            new DrawerFragmentItem(R.id.about_us, TAB_ABOUT_US, AuthorsFragment.class, PlaceholderFragment.makeArguments("Autorzy"))
     };
 
     /**
@@ -86,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_toggle, R.string.navigation_drawer_toggle);
         drawer.addDrawerListener(toggle);

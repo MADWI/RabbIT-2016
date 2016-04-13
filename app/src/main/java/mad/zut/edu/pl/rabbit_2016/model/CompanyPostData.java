@@ -17,9 +17,9 @@ public class CompanyPostData {
     }
 
     public static class Ratings {
-        byte op1;
-        byte op2;
-        byte op3;
+        final byte op1;
+        final byte op2;
+        final byte op3;
 
         public Ratings(byte op1, byte op2, byte op3) {
             this.op1 = op1;
