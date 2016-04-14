@@ -45,22 +45,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/textDefault"
-            android:text="Adam Nowak"
-            android:textSize="@dimen/speaker_name_size"
-            android:layout_marginTop="@dimen/default_margin"
-            android:layout_marginBottom="@dimen/default_margin"
-            android:gravity="center"
-            android:layout_below="@+id/speaker_icon_view"
-            android:layout_alignRight="@+id/speaker_icon_view"
-            android:layout_alignEnd="@+id/speaker_icon_view"
-            android:id="@+id/speaker_name_view"
-            android:layout_alignLeft="@+id/speaker_icon_view"
-            android:layout_alignStart="@+id/speaker_icon_view" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Polskie miasto przyszłości"
             android:textColor="@color/textDefault"
