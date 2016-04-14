@@ -3,7 +3,7 @@
 
     <string name="nav_timetable">Prezentacje</string>
     <string name="nav_stands">Firmy</string>
-    <string name="nav_special_guest">Gość specjalny</string>
+    <string name="nav_special_guest">Pokaz AVID</string>
     <string name="nav_about_us">Autorzy</string>
 
     <string name="navigation_drawer_toggle">Menu</string>
@@ -14,7 +14,7 @@
     <string name="criterion_1_string">Oferta praktyk i staży:</string>
 
     <string name="about_company_string">O firmie:</string>
-    <string name="about_guest_string">Kim jest:</string>
+    <string name="about_guest_string">O czym:</string>
     <string name="time_string">Kiedy:</string>
     <string name="place_string">Gdzie:</string>
 
@@ -51,10 +51,11 @@
     <string name="send_error">Sprawdź połączenie z internetem</string>
     <string name="criterion_error">Musisz ocenić wszystkie kryteria</string>
 
-    <string name="special_guest_name">Prof. Andy Hopper</string>
-    <string name="special_guest_topic_title">Wykład pt. :</string>
-    <string name="special_guest_topic">Perspektywy dla innowacji</string>
-    <string name="special_guest_room">Centrum Nanotechnologii ZUT\nprzy al. Piastów 45</string>
-    <string name="special_guest_description">Prof. Andy Hopper – dyrektor Wydziału Informatyki Uniwersytetu w Cambridge (The Computer Laboratory, University of Cambridge).\n\nTen znakomity naukowiec polskiego pochodzenia (urodzony w Warszawie) jest twórcą takich najwyższej światowej klasy wynalazków jak minikomputer Raspberry PI, procesory ARM, obecne w każdym smartfonie, protokół VNC i wiele innych. Prof. Andy Hopper figuruje na liście najbardziej wpływowych współczesnych Brytyjczyków (100 most influential Britons of the modern age) tygodnika Sunday Times.</string>
-    <string name="special_guest_time">21 kwietnia 2016 roku\ngodz. 10:00 - 12:00</string>
+    <string name="special_guest_name">Avid-Orad</string>
+    <string name="special_guest_topic_title"> </string>
+    <string name="special_guest_topic">Pokaz technologii firmy Avid-Orad</string>
+    <string name="special_guest_room">Wydział Informatyki\nŻołnierska 52, sala 24</string>
+    <string name="special_guest_description">- Wirtualne studio na bazie pattern recognition – prezentacja metody śledzenia ruchów kamery, kluczowania tła oraz nakładania grafiki na sygnał przychodzący z kamery.
+    \n- Pokaz transmisji sportowych na bazie telestracji oraz narzędzi do analizy rozgrywek sportowych.</string>
+    <string name="special_guest_time">20 kwietnia 2016 roku</string>
 </resources>
