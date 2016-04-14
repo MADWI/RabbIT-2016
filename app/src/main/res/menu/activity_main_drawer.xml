@@ -12,7 +12,7 @@
             android:title="@string/nav_stands"/>
         <item
             android:id="@+id/special_guest"
-            android:icon="@drawable/ic_person_black_24dp"
+            android:icon="@drawable/ic_movie_filter_black_24dp"
             android:title="@string/nav_special_guest"/>
 
         <item

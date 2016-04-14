@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="223dp"
             android:id="@+id/guest_image_view"
-            android:src="@drawable/andy_hopper"
+            android:src="@drawable/avid"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
