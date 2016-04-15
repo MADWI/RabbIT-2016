@@ -11,7 +11,7 @@
     <string name="room_string">Sala:</string>
 
     <string name="rate_company_string">Oceń firmę:</string>
-    <string name="criterion_1_string">Oferta praktyk i staży:</string>
+    <string name="criterion_1_string">Oferta praktyk, staży i zatrudnienia:</string>
 
     <string name="about_company_string">O firmie:</string>
     <string name="about_guest_string">O czym:</string>
@@ -46,10 +46,10 @@
     <string name="no_internet">Brak połączenia z internetem</string>
     <string name="settings">Ustawienia</string>
     <string name="rate">Oceń</string>
-    <string name="send_ratings">Wyślij oceny</string>
+    <string name="send_ratings">Wyślij ocenę</string>
     <string name="send_success">Wysłano pomyślnie</string>
     <string name="send_error">Sprawdź połączenie z internetem</string>
-    <string name="criterion_error">Musisz ocenić wszystkie kryteria</string>
+    <string name="criterion_error">Aby wysłać musisz ocenić</string>
 
     <string name="special_guest_name">Avid-Orad</string>
     <string name="special_guest_topic_title"> </string>
