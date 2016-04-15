@@ -105,6 +105,8 @@ public class CompanyActivity extends AppCompatActivity
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    return true; // Keep tracking touch
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     Bundle arguments = new Bundle();
                     arguments.putString(Constants.COMPANY_NAME_KEY, company.getName());
                     arguments.putInt(Constants.COMPANY_ID_KEY, Integer.valueOf(company.getId()));
