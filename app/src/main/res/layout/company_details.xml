@@ -17,7 +17,8 @@
             android:src="@drawable/brightone_logo"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_margin="5dp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
