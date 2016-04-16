@@ -15,4 +15,7 @@
     <integer name="rating_max_value">5</integer>
     <dimen name="about_us_font_size">15sp</dimen>
     <dimen name="speaker_name_size">12sp</dimen>
+
+    <dimen name="company_item_margin_top">6dp</dimen>
+    <dimen name="company_item_margin_bottom">6dp</dimen>
 </resources>
