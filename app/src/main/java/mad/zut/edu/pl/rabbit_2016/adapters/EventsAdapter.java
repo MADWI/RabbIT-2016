@@ -11,6 +11,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import mad.zut.edu.pl.rabbit_2016.R;
 import mad.zut.edu.pl.rabbit_2016.model.event.Event;
 
@@ -55,22 +57,17 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsHold
     }
 
     public class EventsHolder extends RecyclerView.ViewHolder {
-        public final TextView lectureDateView;
-        public final TextView lectureNameView;
-        public final TextView lectureHourView;
-        public final TextView lectureRoomView;
-        public final TextView lectureCompanyNameView;
-        public final ImageView circularImageView;
+
+        @Bind(R.id.lecture_date_view) TextView lectureDateView;
+        @Bind(R.id.lecture_name_view) TextView lectureNameView;
+        @Bind(R.id.lecture_hour_view) TextView lectureHourView;
+        @Bind(R.id.lecture_room_view) TextView lectureRoomView;
+        @Bind(R.id.speaker_icon_view) ImageView circularImageView;
+        @Bind(R.id.lecture_company_name_view) TextView lectureCompanyNameView;
 
         public EventsHolder(View itemView) {
             super(itemView);
-
-            lectureDateView = (TextView) itemView.findViewById(R.id.lecture_date_view);
-            lectureNameView = (TextView) itemView.findViewById(R.id.lecture_name_view);
-            lectureHourView = (TextView) itemView.findViewById(R.id.lecture_hour_view);
-            lectureRoomView = (TextView) itemView.findViewById(R.id.lecture_room_view);
-            lectureCompanyNameView = (TextView) itemView.findViewById(R.id.lecture_company_name_view);
-            circularImageView = (ImageView) itemView.findViewById(R.id.speaker_icon_view);
+            ButterKnife.bind(this, itemView);
         }
     }
 
