@@ -16,6 +16,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import mad.zut.edu.pl.rabbit_2016.Constants;
 import mad.zut.edu.pl.rabbit_2016.R;
 import mad.zut.edu.pl.rabbit_2016.model.company.Company;
@@ -68,18 +70,16 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.Comp
     }
 
     public class CompaniesHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public final TextView companyName;
-        public final TextView companyRoom;
-        public final ImageView companyLogo;
-        public final ImageView checkIcon;
+        @Bind(R.id.company_name) TextView companyName;
+        @Bind(R.id.company_room) TextView companyRoom;
+        @Bind(R.id.company_logo) ImageView companyLogo;
+        @Bind(R.id.checkbox) ImageView checkIcon;
         public float rate;
 
         public CompaniesHolder(View itemView) {
             super(itemView);
-            companyName = (TextView) itemView.findViewById(R.id.company_name);
-            companyRoom = (TextView) itemView.findViewById(R.id.company_room);
-            companyLogo = (ImageView) itemView.findViewById(R.id.company_logo);
-            checkIcon = (ImageView) itemView.findViewById(R.id.checkbox);
+            ButterKnife.bind(this, itemView);
+
             rate = 0;
             itemView.setOnClickListener(this);
         }
