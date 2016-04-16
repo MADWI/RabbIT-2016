@@ -33,8 +33,8 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsHold
     public void onBindViewHolder(EventsAdapter.EventsHolder holder, int position) {
         holder.lectureDateView.setText(event.get(position).getData());
         holder.lectureNameView.setText(event.get(position).getTitle());
-        holder.lectureHourView.setText(event.get(position).getTime());
-        holder.lectureRoomView.setText(event.get(position).getRoom());
+        holder.lectureHourView.setText(event.get(position).getTime().substring(0,5) );
+        holder.lectureRoomView.setText("Sala: " + event.get(position).getRoom());
         holder.lectureCompanyNameView.setText(event.get(position).getSpeaker());
         Picasso.with(holder.itemView.getContext())
                 .load(event.get(position).getSpeakerPictureUrl())
