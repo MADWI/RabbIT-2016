@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout_id"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical">
+
     <ProgressBar
         android:id="@+id/loadingPanel"
         android:layout_width="wrap_content"
@@ -11,14 +12,11 @@
         android:indeterminate="true"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
-    <LinearLayout
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <android.support.v7.widget.RecyclerView
-            android:id="@android:id/list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/default_margin"/>
-    </LinearLayout>
+        android:layout_height="match_parent" />
+
 
 </RelativeLayout>
