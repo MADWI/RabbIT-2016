@@ -48,7 +48,7 @@
     <string name="rate">Oceń</string>
     <string name="send_ratings">Wyślij ocenę</string>
     <string name="send_success">Wysłano pomyślnie</string>
-    <string name="send_error">Sprawdź połączenie z internetem</string>
+    <string name="send_error">Wysyłanie nie powiodło się. Spróbuj później</string>
     <string name="criterion_error">Aby wysłać musisz ocenić</string>
 
     <string name="special_guest_name">Avid-Orad</string>

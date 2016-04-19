@@ -110,12 +110,18 @@ public class RatingDialog extends android.support.v4.app.DialogFragment {
                             ((OnRatesSendListener)getActivity()).onRatesSend(averageRate);
                         }
 
-                        Toast.makeText(getContext(), R.string.send_success, Toast.LENGTH_SHORT).show();
+                        Context context = getContext();
+                        if (context != null) {
+                            Toast.makeText(context, R.string.send_success, Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                     @Override
                     public void onFailure(RetrofitError error) {
-                        Toast.makeText(getContext(), R.string.send_error, Toast.LENGTH_SHORT).show();
+                        Context context = getContext();
+                        if (context != null) {
+                            Toast.makeText(context, R.string.send_error, Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }));
     }
