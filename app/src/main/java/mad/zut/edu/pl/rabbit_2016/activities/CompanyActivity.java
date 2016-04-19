@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +21,7 @@ import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import mad.zut.edu.pl.rabbit_2016.Constants;
 import mad.zut.edu.pl.rabbit_2016.R;
 import mad.zut.edu.pl.rabbit_2016.RatingDialog;
@@ -175,5 +177,10 @@ public class CompanyActivity extends AppCompatActivity
         }
 
         barRateCompany.setRating(averageRate);
+    }
+
+    @OnClick(R.id.company_website_view)
+    void onWebsiteClick() {
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(company.getWebsiteUrl())));
     }
 }
