@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hannesdorfmann.swipeback.Position;
 import com.hannesdorfmann.swipeback.SwipeBack;
@@ -20,6 +22,7 @@ import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import mad.zut.edu.pl.rabbit_2016.Constants;
 import mad.zut.edu.pl.rabbit_2016.R;
 import mad.zut.edu.pl.rabbit_2016.RatingDialog;
@@ -56,6 +59,7 @@ public class CompanyActivity extends AppCompatActivity
     private Company company;
     private NetworkStateReceiver networkStateReceiver;
     private Snackbar snackbar;
+    private boolean mIsOnline;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,13 +111,17 @@ public class CompanyActivity extends AppCompatActivity
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     return true; // Keep tracking touch
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    Bundle arguments = new Bundle();
-                    arguments.putString(Constants.COMPANY_NAME_KEY, company.getName());
-                    arguments.putInt(Constants.COMPANY_ID_KEY, Integer.valueOf(company.getId()));
+                    if (mIsOnline) {
+                        Bundle arguments = new Bundle();
+                        arguments.putString(Constants.COMPANY_NAME_KEY, company.getName());
+                        arguments.putInt(Constants.COMPANY_ID_KEY, Integer.valueOf(company.getId()));
 
-                    RatingDialog ratingDialog = new RatingDialog();
-                    ratingDialog.setArguments(arguments);
-                    ratingDialog.show(getSupportFragmentManager(), Constants.RATING_FRAGMENT);
+                        RatingDialog ratingDialog = new RatingDialog();
+                        ratingDialog.setArguments(arguments);
+                        ratingDialog.show(getSupportFragmentManager(), Constants.RATING_FRAGMENT);
+                    } else {
+                        Toast.makeText(CompanyActivity.this, R.string.no_internet, Toast.LENGTH_SHORT).show();
+                    }
 
                     return true;
                 }
@@ -149,11 +157,13 @@ public class CompanyActivity extends AppCompatActivity
     @Override
     public void networkAvailable() {
         snackbar.dismiss();
+        mIsOnline = true;
     }
 
     @Override
     public void networkUnavailable() {
         snackbar.show();
+        mIsOnline = false;
     }
 
     @Override
@@ -175,5 +185,10 @@ public class CompanyActivity extends AppCompatActivity
         }
 
         barRateCompany.setRating(averageRate);
+    }
+
+    @OnClick(R.id.company_website_view)
+    void onWebsiteClick() {
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(company.getWebsiteUrl())));
     }
 }
