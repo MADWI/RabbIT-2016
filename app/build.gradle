@@ -8,8 +8,8 @@ android {
         applicationId "mad.zut.edu.pl.rabbit_2016"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 4
-        versionName "1.12"
+        versionCode 5
+        versionName "1.13"
 
         // http://android-developers.blogspot.com/2016/02/android-support-library-232.html
         generatedDensities = []
